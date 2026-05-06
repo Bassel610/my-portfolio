@@ -1,4 +1,4 @@
-import VantaBackground from "@/component/Vanta/Vanta";
+import { VantaBackground } from "@/components/shared";
 
 export const metadata = {
   title: 'Basel Sherif - Full Stack Developer Portfolio',
