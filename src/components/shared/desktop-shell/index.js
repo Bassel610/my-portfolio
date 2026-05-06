@@ -18,7 +18,7 @@ const PAGES = {
 const PAGE_KEYS = Object.keys(PAGES);
 
 export default function DesktopShell({ isAppLoading }) {
-  const { transition, wheelRef, sectionContentRef } = useSectionRouter(
+  const { transition, wheelRef, sectionContentRef, goTo } = useSectionRouter(
     PAGE_KEYS,
     { isAppLoading, isMobile: false }
   );
@@ -41,8 +41,16 @@ export default function DesktopShell({ isAppLoading }) {
         touchAction: 'none',
       }}
     >
-      <ScrollProgress currentPage={transition.currentPage} totalPages={4} />
-      <Nav currentPage={transition.currentPage} totalPages={4} />
+      <ScrollProgress
+        currentPage={transition.currentPage}
+        totalPages={4}
+        onNavigate={goTo}
+      />
+      <Nav
+        currentPage={transition.currentPage}
+        totalPages={4}
+        onNavigate={goTo}
+      />
       <CursorFollower />
       <VantaBackground />
       <FloatingElements count={15} />

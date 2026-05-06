@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { NAV_PAGES } from '@/constants/site';
 
-export default function Nav({ currentPage, totalPages, isMobile = false }) {
+export default function Nav({ currentPage, totalPages, isMobile = false, onNavigate }) {
   const [isVisible, setIsVisible] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -100,6 +100,15 @@ export default function Nav({ currentPage, totalPages, isMobile = false }) {
           {NAV_PAGES.map((page, index) => (
             <motion.div
               key={page.id}
+              onClick={() => onNavigate?.(page.id)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onNavigate?.(page.id);
+                }
+              }}
               style={{
                 position: 'relative',
                 display: 'flex',

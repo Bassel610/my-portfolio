@@ -24,8 +24,8 @@ export const TYPING_TEXTS = [
 ];
 
 export const NAV_PAGES = [
-  { id: 'page-one', name: 'Home', icon: '🏠' },
-  { id: 'page-two', name: 'About', icon: '👨‍💻' },
-  { id: 'page-three', name: 'Experience', icon: '🚀' },
-  { id: 'page-four', name: 'Projects', icon: '💼' },
+  { id: 'page-one', sectionId: 'hero', name: 'Home', icon: '🏠' },
+  { id: 'page-two', sectionId: 'about', name: 'About', icon: '👨‍💻' },
+  { id: 'page-three', sectionId: 'experience', name: 'Experience', icon: '🚀' },
+  { id: 'page-four', sectionId: 'projects', name: 'Projects', icon: '💼' },
 ];

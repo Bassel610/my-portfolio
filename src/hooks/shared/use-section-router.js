@@ -95,5 +95,20 @@ export function useSectionRouter(pageKeys, { isAppLoading, isMobile }) {
     return () => clearTimeout(timer);
   }, [transition]);
 
-  return { transition, wheelRef, sectionContentRef };
+  const goTo = (pageId) => {
+    if (isProcessing.current) return;
+    if (pageId === transition.currentPage) return;
+    if (!pageKeys.includes(pageId)) return;
+
+    const fromIndex = pageKeys.indexOf(transition.currentPage);
+    const toIndex = pageKeys.indexOf(pageId);
+    isProcessing.current = true;
+    setTransition({
+      direction: toIndex > fromIndex ? 'down' : 'up',
+      currentPage: transition.currentPage,
+      nextPage: pageId,
+    });
+  };
+
+  return { transition, wheelRef, sectionContentRef, goTo };
 }

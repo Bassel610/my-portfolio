@@ -6,6 +6,14 @@ import Nav from '../nav';
 import CursorFollower from '../cursor-follower';
 import Footer from '../footer';
 import { Hero, About, Experience, Projects } from '@/views';
+import { NAV_PAGES } from '@/constants/site';
+
+function scrollToPage(pageId) {
+  const target = NAV_PAGES.find((p) => p.id === pageId);
+  if (!target) return;
+  const el = document.getElementById(target.sectionId);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 export default function MobileShell({ currentPage = 'page-one' }) {
   return (
@@ -18,8 +26,18 @@ export default function MobileShell({ currentPage = 'page-one' }) {
         padding: 0,
       }}
     >
-      <ScrollProgress currentPage={currentPage} totalPages={4} isMobile={true} />
-      <Nav currentPage={currentPage} totalPages={4} isMobile={true} />
+      <ScrollProgress
+        currentPage={currentPage}
+        totalPages={4}
+        isMobile={true}
+        onNavigate={scrollToPage}
+      />
+      <Nav
+        currentPage={currentPage}
+        totalPages={4}
+        isMobile={true}
+        onNavigate={scrollToPage}
+      />
       <CursorFollower />
       <VantaBackground />
       <FloatingElements count={8} />

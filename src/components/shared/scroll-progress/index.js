@@ -9,6 +9,7 @@ export default function ScrollProgress({
   currentPage,
   totalPages,
   isMobile = false,
+  onNavigate,
 }) {
   const [progress, setProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -89,6 +90,10 @@ export default function ScrollProgress({
         {Array.from({ length: totalPages }, (_, i) => (
           <motion.div
             key={i}
+            onClick={() => onNavigate?.(PAGE_IDS[i])}
+            role="button"
+            tabIndex={0}
+            aria-label={`Go to section ${i + 1}`}
             style={{
               width: '8px',
               height: '8px',
@@ -97,6 +102,7 @@ export default function ScrollProgress({
                 i === activeIndex ? '#00d4ff' : 'rgba(255, 255, 255, 0.3)',
               boxShadow: i === activeIndex ? '0 0 8px #00d4ff' : 'none',
               transition: 'all 0.3s ease',
+              cursor: onNavigate ? 'pointer' : 'default',
             }}
             whileHover={{ scale: 1.2 }}
             transition={{ type: 'spring', stiffness: 400, damping: 17 }}
