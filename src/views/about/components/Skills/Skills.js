@@ -1,7 +1,7 @@
 'use client';
 import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
-import CompactSkills from '@/component/animations/CompactSkills';
+import Cluster from './Cluster';
 
 export default function Skills() {
   return (
@@ -20,7 +20,7 @@ export default function Skills() {
         transition={{ duration: 0.8, delay: 0.5, type: 'spring' }}
         style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
       >
-        <CompactSkills />
+        <Cluster />
       </motion.div>
     </Box>
   );
