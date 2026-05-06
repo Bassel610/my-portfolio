@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { useScrollBoundary } from '@/component/hooks/useScrollBoundary';
+import { useScrollBoundary } from '@/hooks/shared';
 
 export function useProjectRouter(projectKeys, isMobile) {
   const [transition, setTransition] = useState({

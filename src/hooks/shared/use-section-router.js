@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { useScrollBoundary } from '@/component/hooks/useScrollBoundary';
+import { useScrollBoundary } from './use-scroll-boundary';
 
 const TRANSITION_MS = 800;
 const COOLDOWN_MS = 200;
