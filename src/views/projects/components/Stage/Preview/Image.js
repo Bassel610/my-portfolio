@@ -1,5 +1,5 @@
 'use client';
-import ImageWithFallback from '@/component/ui/ImageWithFallback';
+import { ImageWithFallback } from '@/atoms';
 
 export default function Image({ src, alt }) {
   return (

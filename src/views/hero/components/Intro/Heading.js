@@ -1,7 +1,7 @@
 'use client';
 import { Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import GradientText from '@/component/ui/GradientText';
+import { GradientText } from '@/atoms';
 import { SITE } from '@/constants/site';
 import { itemVariants } from './variants';
 

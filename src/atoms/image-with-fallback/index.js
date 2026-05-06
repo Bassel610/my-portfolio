@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from '@/atoms/loading-spinner';
 
-export default function ImageWithFallback({ 
-  src, 
-  alt, 
-  fallbackSrc, 
-  sx = {}, 
+export default function ImageWithFallback({
+  src,
+  alt,
+  fallbackSrc,
+  sx = {},
   showLoadingSpinner = true,
-  fallbackContent = null 
+  fallbackContent = null,
 }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -31,25 +31,31 @@ export default function ImageWithFallback({
   };
 
   const defaultFallbackContent = (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      height: '100%',
-      background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 50%, rgba(240, 147, 251, 0.1) 100%)',
-      border: '2px dashed rgba(102, 126, 234, 0.3)',
-      borderRadius: '16px',
-      color: '#667eea'
-    }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        background:
+          'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 50%, rgba(240, 147, 251, 0.1) 100%)',
+        border: '2px dashed rgba(102, 126, 234, 0.3)',
+        borderRadius: '16px',
+        color: '#667eea',
+      }}
+    >
       <Typography variant="h4" sx={{ mb: 1, opacity: 0.6 }}>
         🖼️
       </Typography>
       <Typography variant="body2" sx={{ opacity: 0.8, textAlign: 'center' }}>
         Image not available
       </Typography>
-      <Typography variant="caption" sx={{ opacity: 0.6, textAlign: 'center', mt: 0.5 }}>
+      <Typography
+        variant="caption"
+        sx={{ opacity: 0.6, textAlign: 'center', mt: 0.5 }}
+      >
         {alt}
       </Typography>
     </Box>
@@ -58,19 +64,21 @@ export default function ImageWithFallback({
   return (
     <Box sx={{ position: 'relative', width: '100%', height: '100%', ...sx }}>
       {loading && showLoadingSpinner && (
-        <Box sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          background: 'rgba(255,255,255,0.9)',
-          borderRadius: '16px',
-          zIndex: 2
-        }}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'rgba(255,255,255,0.9)',
+            borderRadius: '16px',
+            zIndex: 2,
+          }}
+        >
           <LoadingSpinner message="Loading image..." size={40} />
         </Box>
       )}
@@ -99,7 +107,8 @@ export default function ImageWithFallback({
             objectFit: 'cover',
             borderRadius: '16px',
             border: '3px solid transparent',
-            background: 'linear-gradient(white, white) padding-box, linear-gradient(45deg, #667eea, #764ba2, #f093fb) border-box'
+            background:
+              'linear-gradient(white, white) padding-box, linear-gradient(45deg, #667eea, #764ba2, #f093fb) border-box',
           }}
         />
       )}

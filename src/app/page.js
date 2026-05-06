@@ -1,6 +1,6 @@
 'use client';
 import ErrorBoundary from '@/component/ui/ErrorBoundary';
-import LoadingSpinner from '@/component/ui/LoadingSpinner';
+import { LoadingSpinner } from '@/atoms';
 import { DesktopShell, MobileShell } from '@/components/shared';
 import { useAppLoading, useMobile } from '@/hooks/shared';
 

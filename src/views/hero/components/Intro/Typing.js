@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Typography, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
-import TypingAnimation from '@/component/animations/TypingAnimation';
+import { TypingAnimation } from '@/atoms';
 import { TYPING_TEXTS } from '@/constants/site';
 import { itemVariants } from './variants';
 

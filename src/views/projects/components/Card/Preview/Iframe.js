@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Box } from '@mui/material';
-import LoadingSpinner from '@/component/ui/LoadingSpinner';
+import { LoadingSpinner } from '@/atoms';
 
 export default function Iframe({ src, title }) {
   const [loading, setLoading] = useState(true);
