@@ -4,6 +4,7 @@
 
 **A personal developer portfolio with glassmorphism UI, wheel-based navigation, and scroll-driven animations**
 
+[![CI](https://github.com/Bassel610/my-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Bassel610/my-portfolio/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-15.4-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.1-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
 [![Material UI](https://img.shields.io/badge/Material--UI-7.2-007FFF?logo=mui&logoColor=white)](https://mui.com/)
