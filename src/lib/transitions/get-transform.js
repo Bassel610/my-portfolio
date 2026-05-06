@@ -13,8 +13,8 @@ export function getTransform(direction, role) {
         direction === 'down'
           ? 'translateY(120%) scale(0.8) rotateX(-15deg)'
           : 'translateY(-120%) scale(0.8) rotateX(15deg)',
-      opacity: 0.3,
-      filter: 'blur(8px)',
+      opacity: 0,
+      filter: 'blur(4px)',
     };
   }
 
