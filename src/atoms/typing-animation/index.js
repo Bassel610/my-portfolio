@@ -67,6 +67,7 @@ export default function TypingAnimation({
     >
       {currentText}
       <motion.span
+        aria-hidden="true"
         animate={{ opacity: showCursor ? 1 : 0 }}
         transition={{ duration: 0.1 }}
         style={{ color: '#ff00ff' }}

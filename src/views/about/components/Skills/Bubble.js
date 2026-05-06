@@ -73,7 +73,7 @@ export default function Bubble({ skill, index, isActive, onHoverStart, onHoverEn
         }}
       >
         <span style={{ zIndex: 2, position: 'relative' }}>
-          {skill.name.split(/[\s.]/)[0].slice(0, 4)}
+          {skill.abbr ?? skill.name.split(/[\s.]/)[0].slice(0, 4)}
         </span>
 
         <motion.div

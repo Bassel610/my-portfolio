@@ -35,9 +35,9 @@ export default function Typing() {
         I&apos;m a{' '}
         <TypingAnimation
           texts={TYPING_TEXTS}
-          speed={100}
-          deleteSpeed={50}
-          delayBetweenTexts={2000}
+          speed={140}
+          deleteSpeed={70}
+          delayBetweenTexts={2800}
           style={{ color: '#00d4ff', fontWeight: 600 }}
         />
       </Typography>
