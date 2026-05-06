@@ -4,6 +4,7 @@ import Aside from "./aside";
 import Projects from "./projects";
 import MobileProjectSlider from "./MobileProjectSlider";
 import { useScrollBoundary } from "../hooks/useScrollBoundary";
+import { PROJECTS } from "@/constants/projects";
 
 export default function ScreenFour() {
   const theme = useTheme();
@@ -28,63 +29,9 @@ export default function ScreenFour() {
     isAtBottom 
   } = useScrollBoundary(projectContentRef, !isMobile);
 
-  // Project data with props for each project
-  const projects = {
-        "project-one": {
-      component: Projects,
-      props: {
-        title: "TwinDeix Assessment Platform ⭐",
-        description: "An advanced multi-role dashboard system supporting three user types: Users, HR, and Admins. Features sophisticated assessment algorithms, automated PDF report generation, payment processing, package management, user enrollment systems, and comprehensive analytics. The platform generates dynamic reports based on complex front-end algorithms and stores all data securely with download capabilities for each account.",
-        img: "/images/twindeix-project.png",
-        isIframe: false
-      }
-    },
-        "project-two": {
-      component: Projects,
-      props: {
-        title: "Pico - Fresh Organic Produce Delivery Platform",
-        description: "A modern e-commerce React application for fresh organic produce delivery, built with React 19, Vite 6, and Material-UI 6. Features comprehensive shopping cart functionality, real-time search with advanced filtering, user authentication, and mobile-responsive design. Implemented performance optimizations including code splitting, lazy loading, and intelligent API caching achieving 90+ Lighthouse scores.",
-        img: "https://picco.netlify.app",
-        isIframe: true
-      }
-    },
-    "project-three": {
-      component: Projects,
-      props: {
-        title: "Interior Design Portfolio",
-        description: "An elegant designer portfolio showcasing home interior projects through an immersive gallery experience. Features dynamic color adaptation based on selected images, smooth slider navigation, and an innovative spider bar interface. The gallery intelligently adjusts its color palette to complement each displayed project.",
-        img: "https://musical-concha-fdffd5.netlify.app",
-        isIframe: true
-      }
-    },
-    "project-four": {
-      component: Projects,
-      props: {
-        title: "Artisan Donuts Landing",
-        description: "A clean and engaging single-page website designed for a specialty donut business. Features modern design principles with smooth animations and compelling call-to-action elements to drive customer engagement and conversions.",
-        img: "https://astounding-sherbet-ade296.netlify.app",
-        isIframe: true
-      }
-    },
-    "project-five": {
-      component: Projects,
-      props: {
-        title: "Bershka Fashion Store",
-        description: "A complete e-commerce solution for fashion retail featuring secure payment integration, comprehensive product catalog, detailed product pages, user authentication system, shopping cart functionality, and order management. Built with modern web technologies to deliver a seamless shopping experience.",
-        img: "https://peppy-liger-e79913.netlify.app",
-        isIframe: true
-      }
-    },
-    "project-six": {
-      component: Projects,
-      props: {
-        title: "Data Nile Research Platform",
-        description: "A comprehensive research website featuring a powerful admin dashboard with complete content control. The platform includes dynamic text and image management, customizable color schemes and typography, flexible contact form builder, and a dedicated panel for managing contact requests. Built with Firebase integration for real-time content updates.",
-        img: "https://lambent-choux-e63b31.netlify.app",
-        isIframe: true
-      }
-    }
-  };
+  const projects = Object.fromEntries(
+    PROJECTS.map(({ id, ...props }) => [id, { component: Projects, props }])
+  );
 
   const projectKeys = Object.keys(projects);
 
