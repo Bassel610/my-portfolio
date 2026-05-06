@@ -1,12 +1,14 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { usePrefersReducedMotion } from '@/hooks/shared';
 
 export default function FloatingElements({ count = 20 }) {
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [elements, setElements] = useState([]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || prefersReducedMotion) return;
 
     const newElements = Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -18,7 +20,9 @@ export default function FloatingElements({ count = 20 }) {
       opacity: Math.random() * 0.5 + 0.1,
     }));
     setElements(newElements);
-  }, [count]);
+  }, [count, prefersReducedMotion]);
+
+  if (prefersReducedMotion) return null;
 
   return (
     <div

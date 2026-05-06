@@ -40,7 +40,7 @@ export default function MobileShell({ currentPage = 'page-one' }) {
       />
       <CursorFollower />
       <VantaBackground />
-      <FloatingElements count={8} />
+      <FloatingElements count={4} />
 
       <div style={{ position: 'relative' }}>
         <Hero />

@@ -1,11 +1,16 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useFinePointer, usePrefersReducedMotion } from '@/hooks/shared';
 
 export default function CursorFollower() {
+  const finePointer = useFinePointer();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [cursorVariant, setCursorVariant] = useState('default');
+
+  if (!finePointer || prefersReducedMotion) return null;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;

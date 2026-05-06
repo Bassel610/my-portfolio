@@ -1,12 +1,17 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Head from 'next/head';
+import { usePrefersReducedMotion } from '@/hooks/shared';
 
 export default function VantaBackground() {
   const vantaRef = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     let vantaEffect;
+    let canceled = false;
 
     const threeScript = document.createElement('script');
     threeScript.src =
@@ -20,6 +25,7 @@ export default function VantaBackground() {
 
     threeScript.onload = () => {
       vantaScript.onload = () => {
+        if (canceled) return;
         vantaEffect = window.VANTA.NET({
           el: vantaRef.current,
           mouseControls: false,
@@ -41,10 +47,19 @@ export default function VantaBackground() {
 
     document.body.appendChild(threeScript);
 
+    const handleVisibility = () => {
+      if (!vantaEffect) return;
+      if (document.hidden && vantaEffect.pause) vantaEffect.pause();
+      else if (!document.hidden && vantaEffect.play) vantaEffect.play();
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
     return () => {
+      canceled = true;
+      document.removeEventListener('visibilitychange', handleVisibility);
       if (vantaEffect) vantaEffect.destroy();
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <>
@@ -61,6 +76,7 @@ export default function VantaBackground() {
           width: '100%',
           height: '100%',
           zIndex: -1,
+          background: prefersReducedMotion ? '#23153c' : undefined,
         }}
       />
     </>

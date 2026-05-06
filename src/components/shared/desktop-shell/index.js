@@ -53,7 +53,7 @@ export default function DesktopShell({ isAppLoading }) {
       />
       <CursorFollower />
       <VantaBackground />
-      <FloatingElements count={15} />
+      <FloatingElements count={6} />
 
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
         <div
