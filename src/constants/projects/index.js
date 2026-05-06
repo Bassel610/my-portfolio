@@ -1,3 +1,12 @@
+export const PROJECT_NAV = [
+  { id: 'project-one', title: 'TwinDeix Platform', type: 'Assessment System', tech: 'Enterprise • AI' },
+  { id: 'project-two', title: 'PICO Platform', type: 'E-commerce', tech: 'React • Dynamic UI' },
+  { id: 'project-three', title: 'Interior Design', type: 'Portfolio Gallery', tech: 'React • Dynamic UI' },
+  { id: 'project-four', title: 'Artisan Donuts', type: 'Landing Page', tech: 'Modern Design' },
+  { id: 'project-five', title: 'Bershka Store', type: 'E-commerce', tech: 'Full Stack' },
+  { id: 'project-sox', title: 'Data Nile Research', type: 'Dashboard Platform', tech: 'React • Firebase' },
+];
+
 export const PROJECTS = [
   {
     id: 'project-one',
