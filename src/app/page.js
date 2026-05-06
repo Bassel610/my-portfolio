@@ -1,6 +1,6 @@
 'use client'
 import First_screen from "@/views/hero";
-import Screen_tow from "@/component/screen-two";
+import Screen_tow from "@/views/about";
 import Screen_three from "@/component/screen-three";
 import Screen_four from "@/component/screen-four";
 import VantaBackground from "../component/Vanta/Vanta";
