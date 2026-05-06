@@ -1,5 +1,6 @@
 'use client'
 import {  Box, Avatar, styled  } from "@mui/material";
+import { SITE } from "@/constants/site";
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   boxShadow: theme.shadows[4],
@@ -28,8 +29,8 @@ export default function Img() {
     >
       {/* Circular photo with formal styling */}
       <StyledAvatar
-        src={'https://github.com/Basel-Sherif/imge/blob/main/WhatsApp%20Image%202025-08-03%20at%2016.13.42_18b24c87.jpg?raw=true'} // Replace with your image path
-        alt="Basel sherif"
+        src={SITE.avatarSrc}
+        alt={SITE.name}
         sx={{
           width: { xs: 180, sm: 220, md: 250 },
           height: { xs: 180, sm: 220, md: 250 },

@@ -4,14 +4,9 @@ import { motion } from 'framer-motion';
 import CompactSkills from '../../animations/CompactSkills';
 import GradientText from '../../ui/GradientText';
 import TiltCard from '../../ui/TiltCard';
+import { SITE } from '@/constants/site';
 
 export default function AboutSection() {
-  const skills = [
-    'React', 'Next.js', 'Material-UI', 
-    'Node.js', 'REST APIs', 'Jest',
-    'SQL/NoSQL', 'Figma', 'Git'
-  ];
-
   return (
     <Box sx={{
       position: 'relative',
@@ -57,7 +52,7 @@ export default function AboutSection() {
           }}
         >
           <GradientText variant="primary" animate={true}>
-            Basel Sherif
+            {SITE.name}
           </GradientText>
         </Typography>
 
@@ -71,12 +66,12 @@ export default function AboutSection() {
           }}
         >
           <GradientText mb="5px" variant="accent" animate={true}>
-            React Specialist | Full-Stack Developer
+            {SITE.role}
           </GradientText>
         </Typography>
 
-        <Typography 
-          paragraph 
+        <Typography
+          paragraph
           sx={{
             fontSize: '1.1rem',
             lineHeight: 1.8,
@@ -84,7 +79,7 @@ export default function AboutSection() {
             textShadow: '0 1px 3px rgba(0,0,0,0.4)'
           }}
         >
-Experienced React Developer with 2+ years of crafting high-performance web applications in agile environments. Passionate about turning complex problems into intuitive, user-centric solutions—whether working on frontend architectures, integrating APIs, or collaborating on full-stack features. Adept at writing clean, scalable code and thriving in team-driven settings where quality and maintainability matter. While most of my work has been in proprietary company projects, I bring a track record of delivering robust applications that meet both business and technical demands.
+          {SITE.bio}
         </Typography>
 
         {/* Compact Skills Display */}

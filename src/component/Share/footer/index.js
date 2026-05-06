@@ -1,6 +1,7 @@
 'use client'
 import { Avatar, Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
+import { SITE } from '@/constants/site';
 
 const Footer = () => {
   return (
@@ -25,8 +26,8 @@ const Footer = () => {
       }}
     >
       <Avatar
-        src="https://raw.githubusercontent.com/Basel-Sherif/imge/refs/heads/main/WhatsApp%20Image%202025-08-03%20at%2016.13.42_18b24c87.jpg"
-        alt="Your Name"
+        src={SITE.footerAvatarSrc}
+        alt={SITE.name}
         sx={{
           width: 40,
           height: 40,
@@ -40,7 +41,7 @@ const Footer = () => {
           fontWeight: 500,
         }}
       >
-        © Basel sherif
+        {SITE.copyright}
       </Typography>
     </Box>
   );

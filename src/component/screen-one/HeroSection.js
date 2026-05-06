@@ -1,15 +1,16 @@
 'use client';
 import React, { useState, useEffect } from "react";
-import { 
-  Box, 
-  Typography, 
-  Button, 
+import {
+  Box,
+  Typography,
+  Button,
   useTheme
 } from "@mui/material";
 import { motion } from "framer-motion";
 import TypingAnimation from "../animations/TypingAnimation";
 import GradientText from "../ui/GradientText";
 import TiltCard from "../ui/TiltCard";
+import { SITE, TYPING_TEXTS } from "@/constants/site";
 
 
 const HeroSection = () => {
@@ -89,9 +90,9 @@ const HeroSection = () => {
               fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem', lg: '3.5rem' }
             }}
           >
-            Hi, I'm{" "}
+            {SITE.greeting}{" "}
             <GradientText variant="cyber" animate={true}>
-              Basel Sherif
+              {SITE.name}
             </GradientText>
           </Typography>
         </motion.div>
@@ -109,13 +110,8 @@ const HeroSection = () => {
             }}
           >
             I'm a{" "}
-            <TypingAnimation 
-              texts={[
-                "React.js Developer",
-                "Frontend Engineer", 
-                "UI/UX Enthusiast",
-                "Problem Solver"
-              ]}
+            <TypingAnimation
+              texts={TYPING_TEXTS}
               speed={100}
               deleteSpeed={50}
               delayBetweenTexts={2000}
@@ -141,15 +137,15 @@ const HeroSection = () => {
               px: { xs: 1, sm: 0 }
             }}
           >
-            I build solutions that are{" "}
-            <motion.span 
-              style={{ 
+            {SITE.taglinePrefix}{" "}
+            <motion.span
+              style={{
                 color: "#FF9FDB",
                 fontWeight: 600
               }}
               whileHover={{ scale: 1.05 }}
             >
-              efficient, scalable, and user-focused
+              {SITE.tagline}
             </motion.span>
             .
           </Typography>
