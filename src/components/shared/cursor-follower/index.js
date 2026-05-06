@@ -1,6 +1,6 @@
-'use client'
+'use client';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function CursorFollower() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -68,12 +68,11 @@ export default function CursorFollower() {
       scale: 2,
       backgroundColor: 'rgba(255, 255, 0, 0.1)',
       border: '2px solid rgba(255, 255, 0, 0.6)',
-    }
+    },
   };
 
   return (
     <>
-      {/* Main cursor */}
       <motion.div
         style={{
           position: 'fixed',
@@ -92,11 +91,10 @@ export default function CursorFollower() {
           type: 'spring',
           stiffness: 500,
           damping: 28,
-          mass: 0.5
+          mass: 0.5,
         }}
       />
 
-      {/* Trailing dots */}
       {Array.from({ length: 5 }).map((_, i) => (
         <motion.div
           key={i}
@@ -119,12 +117,11 @@ export default function CursorFollower() {
             type: 'spring',
             stiffness: 150 - i * 20,
             damping: 20 + i * 5,
-            mass: 0.2 + i * 0.1
+            mass: 0.2 + i * 0.1,
           }}
         />
       ))}
 
-      {/* Ripple effect on click */}
       <motion.div
         style={{
           position: 'fixed',
@@ -138,7 +135,11 @@ export default function CursorFollower() {
           zIndex: 9997,
         }}
         initial={{ scale: 0, opacity: 0 }}
-        animate={isHovering ? { scale: 1, opacity: 0.5 } : { scale: 0, opacity: 0 }}
+        animate={
+          isHovering
+            ? { scale: 1, opacity: 0.5 }
+            : { scale: 0, opacity: 0 }
+        }
         transition={{ duration: 0.3 }}
       />
     </>

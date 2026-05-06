@@ -1,9 +1,9 @@
-'use client'
+'use client';
 import { Avatar, Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { SITE } from '@/constants/site';
 
-const Footer = () => {
+export default function Footer() {
   return (
     <Box
       component={motion.footer}
@@ -34,17 +34,9 @@ const Footer = () => {
           border: '2px solid rgba(255, 255, 255, 0.3)',
         }}
       />
-      <Typography
-        variant="body2"
-        sx={{
-          color: 'white',
-          fontWeight: 500,
-        }}
-      >
+      <Typography variant="body2" sx={{ color: 'white', fontWeight: 500 }}>
         {SITE.copyright}
       </Typography>
     </Box>
   );
-};
-
-export default Footer;
+}

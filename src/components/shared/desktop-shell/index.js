@@ -1,10 +1,10 @@
 'use client';
-import VantaBackground from '@/component/Vanta/Vanta';
-import ScrollProgress from '@/component/animations/ScrollProgress';
-import FloatingElements from '@/component/animations/FloatingElements';
-import GlassmorphismNav from '@/component/ui/GlassmorphismNav';
-import CursorFollower from '@/component/ui/CursorFollower';
-import Footer from '@/component/Share/footer';
+import VantaBackground from '../vanta-background';
+import ScrollProgress from '../scroll-progress';
+import FloatingElements from '../floating-elements';
+import Nav from '../nav';
+import CursorFollower from '../cursor-follower';
+import Footer from '../footer';
 import { useSectionRouter } from '@/hooks/shared';
 import { getTransform } from '@/lib';
 import { Hero, About, Experience, Projects } from '@/views';
@@ -42,7 +42,7 @@ export default function DesktopShell({ isAppLoading }) {
       }}
     >
       <ScrollProgress currentPage={transition.currentPage} totalPages={4} />
-      <GlassmorphismNav currentPage={transition.currentPage} totalPages={4} />
+      <Nav currentPage={transition.currentPage} totalPages={4} />
       <CursorFollower />
       <VantaBackground />
       <FloatingElements count={15} />

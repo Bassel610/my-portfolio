@@ -24,3 +24,10 @@ export const TYPING_TEXTS = [
   'UI/UX Enthusiast',
   'Problem Solver',
 ];
+
+export const NAV_PAGES = [
+  { id: 'page-one', name: 'Home', icon: '🏠' },
+  { id: 'page-two', name: 'About', icon: '👨‍💻' },
+  { id: 'page-three', name: 'Experience', icon: '🚀' },
+  { id: 'page-four', name: 'Projects', icon: '💼' },
+];
