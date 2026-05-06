@@ -26,7 +26,8 @@ export default function About() {
           color: '#fff',
           textAlign: 'center',
           px: { xs: 2, sm: 3, md: 4 },
-          py: { xs: 4, md: 0 },
+          pt: { xs: 10, md: 12 },
+          pb: { xs: 4, md: 4 },
           overflow: 'hidden',
           boxSizing: 'border-box',
         }}

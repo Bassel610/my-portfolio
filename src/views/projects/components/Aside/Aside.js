@@ -40,6 +40,7 @@ export default function Aside({ activeProject }) {
         variant="h5"
         sx={{
           mb: { xs: 2, md: 3 },
+          mt: { xs: 0, md: 8 },
           fontWeight: 'bold',
           textAlign: 'center',
           color: 'white',
