@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import Head from 'next/head';
 import { usePrefersReducedMotion } from '@/hooks/shared';
 
 export default function VantaBackground() {
@@ -13,21 +12,13 @@ export default function VantaBackground() {
     let vantaEffect;
     let canceled = false;
 
-    const threeScript = document.createElement('script');
-    threeScript.src =
-      'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    threeScript.async = true;
-
-    const vantaScript = document.createElement('script');
-    vantaScript.src =
-      'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js';
-    vantaScript.async = true;
-
-    threeScript.onload = () => {
-      vantaScript.onload = () => {
+    Promise.all([import('three'), import('vanta/dist/vanta.net.min')]).then(
+      ([THREE, VantaModule]) => {
         if (canceled) return;
-        vantaEffect = window.VANTA.NET({
+        const NET = VantaModule.default ?? VantaModule;
+        vantaEffect = NET({
           el: vantaRef.current,
+          THREE,
           mouseControls: false,
           touchControls: true,
           gyroControls: false,
@@ -41,11 +32,8 @@ export default function VantaBackground() {
           maxDistance: 23.0,
           spacing: 20.0,
         });
-      };
-      document.body.appendChild(vantaScript);
-    };
-
-    document.body.appendChild(threeScript);
+      }
+    );
 
     const handleVisibility = () => {
       if (!vantaEffect) return;
@@ -62,23 +50,17 @@ export default function VantaBackground() {
   }, [prefersReducedMotion]);
 
   return (
-    <>
-      <Head>
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-      </Head>
-      <div
-        ref={vantaRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: -1,
-          background: prefersReducedMotion ? '#23153c' : undefined,
-        }}
-      />
-    </>
+    <div
+      ref={vantaRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+        background: prefersReducedMotion ? '#23153c' : undefined,
+      }}
+    />
   );
 }
