@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-const MOBILE_BREAKPOINT = 768;
+const MOBILE_BREAKPOINT = 900;
 const RESIZE_DEBOUNCE_MS = 200;
 
 export function useMobile() {

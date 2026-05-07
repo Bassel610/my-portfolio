@@ -66,24 +66,24 @@ export default function Nav({ currentPage, totalPages, isMobile = false, onNavig
           backdropFilter: 'blur(20px)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
           borderRadius: '50px',
-          padding: window.innerWidth < 768 ? '8px 16px' : '12px 24px',
+          padding: isMobile ? '8px 16px' : '12px 24px',
           display: 'flex',
           alignItems: 'center',
-          gap: window.innerWidth < 768 ? '12px' : '20px',
+          gap: isMobile ? '12px' : '20px',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'auto',
-          fontSize: window.innerWidth < 768 ? '14px' : '16px',
+          fontSize: isMobile ? '14px' : '16px',
           flexWrap: 'nowrap',
           overflow: 'hidden',
         }}
       >
         <motion.div
           style={{
-            fontSize: window.innerWidth < 768 ? '16px' : '20px',
+            fontSize: isMobile ? '16px' : '20px',
             fontWeight: 'bold',
             color: '#fff',
-            marginRight: window.innerWidth < 768 ? '5px' : '10px',
-            display: window.innerWidth < 480 ? 'none' : 'block',
+            marginRight: isMobile ? '5px' : '10px',
+            display: isMobile ? 'none' : 'block',
           }}
           whileHover={{ scale: 1.1 }}
         >
@@ -94,7 +94,7 @@ export default function Nav({ currentPage, totalPages, isMobile = false, onNavig
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: window.innerWidth < 768 ? '8px' : '12px',
+            gap: isMobile ? '8px' : '12px',
           }}
         >
           {NAV_PAGES.map((page, index) => (
@@ -114,12 +114,12 @@ export default function Nav({ currentPage, totalPages, isMobile = false, onNavig
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                padding: window.innerWidth < 768 ? '6px 10px' : '8px 12px',
+                padding: isMobile ? '6px 10px' : '8px 12px',
                 borderRadius: '25px',
                 cursor: 'pointer',
                 color:
                   activeIndex === index ? '#fff' : 'rgba(255, 255, 255, 0.6)',
-                fontSize: window.innerWidth < 768 ? '12px' : '14px',
+                fontSize: isMobile ? '12px' : '14px',
                 fontWeight: '500',
               }}
               whileHover={{ scale: 1.05, color: '#fff' }}
@@ -145,7 +145,7 @@ export default function Nav({ currentPage, totalPages, isMobile = false, onNavig
 
               <span
                 style={{
-                  fontSize: window.innerWidth < 768 ? '14px' : '16px',
+                  fontSize: isMobile ? '14px' : '16px',
                   position: 'relative',
                   zIndex: 1,
                 }}
@@ -153,7 +153,7 @@ export default function Nav({ currentPage, totalPages, isMobile = false, onNavig
                 {page.icon}
               </span>
 
-              {window.innerWidth < 768 ? (
+              {isMobile ? (
                 <span
                   style={{
                     position: 'relative',
