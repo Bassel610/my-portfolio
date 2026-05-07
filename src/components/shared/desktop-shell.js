@@ -8,8 +8,8 @@ import Footer from './footer';
 import NowPill from './now-pill';
 import CommandPalette from './command-palette';
 import { LoadingSpinner } from '@/atoms';
-import { useSectionRouter } from '@/hooks/shared';
-import { getTransform } from '@/lib';
+import { useSectionNav } from '@/hooks/shared';
+import { NAV_PAGES } from '@/constants/site';
 import Hero from '@/views/hero';
 
 const About = dynamic(() => import('@/views/about'), {
@@ -29,27 +29,21 @@ const Projects = dynamic(() => import('@/views/projects'), {
   loading: () => <LoadingSpinner size={40} />,
 });
 
-const PAGES = {
-  'page-one': Hero,
-  'page-two': About,
-  'page-three': Experience,
-  'page-four': CaseStudy,
-  'page-five': Projects,
-};
-const PAGE_KEYS = Object.keys(PAGES);
+const SECTIONS = [
+  { sectionId: 'hero', Component: Hero },
+  { sectionId: 'about', Component: About },
+  { sectionId: 'experience', Component: Experience },
+  { sectionId: 'case-study', Component: CaseStudy },
+  { sectionId: 'projects', Component: Projects },
+];
 
-export default function DesktopShell({ isAppLoading }) {
-  const { transition, wheelRef, sectionContentRef, goTo } = useSectionRouter(
-    PAGE_KEYS,
-    { isAppLoading, isMobile: false }
-  );
+const totalPages = NAV_PAGES.length;
 
-  const CurrentComponent = PAGES[transition.currentPage];
-  const NextComponent = transition.nextPage ? PAGES[transition.nextPage] : null;
+export default function DesktopShell() {
+  const { containerRef, currentPage, goTo } = useSectionNav();
 
   return (
     <div
-      ref={wheelRef}
       style={{
         position: 'fixed',
         top: 0,
@@ -57,19 +51,16 @@ export default function DesktopShell({ isAppLoading }) {
         width: '100vw',
         height: '100vh',
         overflow: 'hidden',
-        margin: 0,
-        padding: 0,
-        touchAction: 'none',
       }}
     >
       <ScrollProgress
-        currentPage={transition.currentPage}
-        totalPages={5}
+        currentPage={currentPage}
+        totalPages={totalPages}
         onNavigate={goTo}
       />
       <Nav
-        currentPage={transition.currentPage}
-        totalPages={5}
+        currentPage={currentPage}
+        totalPages={totalPages}
         onNavigate={goTo}
       />
       <NowPill />
@@ -77,62 +68,32 @@ export default function DesktopShell({ isAppLoading }) {
       <VantaBackground />
       <FloatingElements count={6} />
 
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-        <div
-          ref={sectionContentRef}
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            overflow: 'auto',
-            ...getTransform(
-              transition.nextPage ? transition.direction : null,
-              'current'
-            ),
-            transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
-            transformStyle: 'preserve-3d',
-            perspective: '1000px',
-            zIndex: 2,
-          }}
-        >
-          <div
+      <div
+        ref={containerRef}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          overflowY: 'auto',
+          scrollSnapType: 'y mandatory',
+          scrollBehavior: 'smooth',
+          zIndex: 2,
+        }}
+      >
+        {SECTIONS.map(({ sectionId, Component }) => (
+          <section
+            key={sectionId}
+            id={sectionId}
             style={{
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              width: '100%',
-              minHeight: '100%',
+              minHeight: '100vh',
+              scrollSnapAlign: 'start',
+              scrollSnapStop: 'always',
+              position: 'relative',
             }}
           >
-            <CurrentComponent />
-          </div>
-        </div>
+            <Component />
+          </section>
+        ))}
         <Footer />
-
-        {NextComponent && (
-          <div
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              ...getTransform(transition.direction, 'next'),
-              transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
-              transformStyle: 'preserve-3d',
-              perspective: '1000px',
-              zIndex: 1,
-            }}
-          >
-            <div
-              style={{
-                transform: 'translateZ(0)',
-                backfaceVisibility: 'hidden',
-                width: '100%',
-                height: '100%',
-              }}
-            >
-              <NextComponent />
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

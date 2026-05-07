@@ -4,7 +4,6 @@ import { Intro, Avatar } from '@/components/hero';
 export default function Hero() {
   return (
     <Stack
-      id="hero"
       direction={{ xs: 'column', md: 'row' }}
       justifyContent="center"
       alignItems="center"

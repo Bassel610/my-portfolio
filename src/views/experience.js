@@ -3,7 +3,7 @@ import { Heading, Stats, Timeline } from '@/components/experience';
 
 export default function Experience() {
   return (
-    <Box id="experience">
+    <Box>
       <Box
         sx={{
           maxWidth: { xs: '100%', sm: 600, md: 800 },

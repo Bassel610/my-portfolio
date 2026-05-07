@@ -8,7 +8,7 @@ export default function Projects() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box id="projects">
+    <Box>
       {isMobile ? (
         <MobileShell projects={PROJECTS} />
       ) : (

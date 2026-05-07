@@ -20,7 +20,7 @@ export default function Home() {
     <ErrorBoundary>
       <OfflineBanner />
       <GlobalErrorHandler />
-      {isMobile ? <MobileShell /> : <DesktopShell isAppLoading={isAppLoading} />}
+      {isMobile ? <MobileShell /> : <DesktopShell />}
     </ErrorBoundary>
   );
 }

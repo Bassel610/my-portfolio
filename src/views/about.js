@@ -4,7 +4,6 @@ import { Name, Role, Bio, Skills } from '@/components/about';
 export default function About() {
   return (
     <Box
-      id="about"
       sx={{
         width: '100%',
         maxWidth: '100vw',

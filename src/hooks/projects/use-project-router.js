@@ -42,11 +42,10 @@ export function useProjectRouter(projectKeys, isMobile) {
 
   useEffect(() => {
     const handleWheel = (e) => {
-      e.preventDefault();
-
       if (Math.abs(e.deltaY) < MIN_DELTA) return;
 
       if (isProcessing.current) {
+        e.preventDefault();
         e.stopPropagation();
         return;
       }
@@ -57,11 +56,13 @@ export function useProjectRouter(projectKeys, isMobile) {
 
       if (hasOverflow && projectContentRef.current) {
         if (direction === 'down' && canScrollDown) {
+          e.preventDefault();
           e.stopPropagation();
           projectContentRef.current.scrollTop += cappedDelta;
           return;
         }
         if (direction === 'up' && canScrollUp) {
+          e.preventDefault();
           e.stopPropagation();
           projectContentRef.current.scrollTop += cappedDelta;
           return;
@@ -73,6 +74,7 @@ export function useProjectRouter(projectKeys, isMobile) {
       );
 
       if (direction === 'up' && currentIndex > 0) {
+        e.preventDefault();
         e.stopPropagation();
         isProcessing.current = true;
         setTransition({
@@ -84,6 +86,7 @@ export function useProjectRouter(projectKeys, isMobile) {
       }
 
       if (direction === 'down' && currentIndex < projectKeys.length - 1) {
+        e.preventDefault();
         e.stopPropagation();
         isProcessing.current = true;
         setTransition({
@@ -93,6 +96,8 @@ export function useProjectRouter(projectKeys, isMobile) {
         });
         return;
       }
+      // At first/last project: let the event bubble so the outer
+      // scroll-snap container can step into the next section.
     };
 
     const node = wheelRef.current;

@@ -4,7 +4,7 @@ import { CASE_STUDY } from '@/constants/case-study';
 
 export default function CaseStudy() {
   return (
-    <Box id="case-study" sx={{ minHeight: '100vh' }}>
+    <Box sx={{ minHeight: '100vh' }}>
       <Box
         sx={{
           maxWidth: { xs: '100%', md: 980 },
