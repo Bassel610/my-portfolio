@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useScrollBoundary } from '@/hooks/shared';
 
 const TRANSITION_MS = 800;
+const COOLDOWN_MS = 250;
 const MIN_DELTA = 5;
 const MAX_DELTA = 100;
 
@@ -24,12 +25,34 @@ export function useProjectRouter(projectKeys, isMobile) {
     !isMobile
   );
 
+  const goToRef = useRef(null);
+  goToRef.current = (projectId) => {
+    if (isProcessing.current) return;
+    if (!projectKeys.includes(projectId)) return;
+    if (projectId === transitionRef.current.currentProject) return;
+    const fromIndex = projectKeys.indexOf(transitionRef.current.currentProject);
+    const toIndex = projectKeys.indexOf(projectId);
+    isProcessing.current = true;
+    setTransition({
+      direction: toIndex > fromIndex ? 'down' : 'up',
+      currentProject: transitionRef.current.currentProject,
+      nextProject: projectId,
+    });
+  };
+
   useEffect(() => {
     const handleWheel = (e) => {
       e.preventDefault();
-      if (isProcessing.current || Math.abs(e.deltaY) < MIN_DELTA) return;
 
-      const cappedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), MAX_DELTA);
+      if (Math.abs(e.deltaY) < MIN_DELTA) return;
+
+      if (isProcessing.current) {
+        e.stopPropagation();
+        return;
+      }
+
+      const cappedDelta =
+        Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), MAX_DELTA);
       const direction = cappedDelta > 0 ? 'down' : 'up';
 
       if (hasOverflow && projectContentRef.current) {
@@ -45,26 +68,31 @@ export function useProjectRouter(projectKeys, isMobile) {
         }
       }
 
-      const currentIndex = projectKeys.indexOf(transitionRef.current.currentProject);
-      if (
-        (direction === 'down' && currentIndex === projectKeys.length - 1) ||
-        (direction === 'up' && currentIndex === 0)
-      ) {
+      const currentIndex = projectKeys.indexOf(
+        transitionRef.current.currentProject
+      );
+
+      if (direction === 'up' && currentIndex > 0) {
+        e.stopPropagation();
+        isProcessing.current = true;
+        setTransition({
+          direction: 'up',
+          currentProject: transitionRef.current.currentProject,
+          nextProject: projectKeys[currentIndex - 1],
+        });
         return;
       }
 
-      e.stopPropagation();
-      isProcessing.current = true;
-      const nextProject =
-        direction === 'down'
-          ? projectKeys[currentIndex + 1]
-          : projectKeys[currentIndex - 1];
-
-      setTransition({
-        direction,
-        currentProject: transitionRef.current.currentProject,
-        nextProject,
-      });
+      if (direction === 'down' && currentIndex < projectKeys.length - 1) {
+        e.stopPropagation();
+        isProcessing.current = true;
+        setTransition({
+          direction: 'down',
+          currentProject: transitionRef.current.currentProject,
+          nextProject: projectKeys[currentIndex + 1],
+        });
+        return;
+      }
     };
 
     const node = wheelRef.current;
@@ -85,10 +113,17 @@ export function useProjectRouter(projectKeys, isMobile) {
       if (projectContentRef.current) {
         projectContentRef.current.scrollTop = 0;
       }
-      isProcessing.current = false;
+      setTimeout(() => {
+        isProcessing.current = false;
+      }, COOLDOWN_MS);
     }, TRANSITION_MS);
     return () => clearTimeout(timer);
   }, [transition]);
 
-  return { transition, wheelRef, projectContentRef };
+  return {
+    transition,
+    wheelRef,
+    projectContentRef,
+    goTo: (id) => goToRef.current?.(id),
+  };
 }
