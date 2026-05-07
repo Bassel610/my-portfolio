@@ -5,6 +5,7 @@ import ScrollProgress from './scroll-progress';
 import FloatingElements from './floating-elements';
 import Nav from './nav';
 import Footer from './footer';
+import NowPill from './now-pill';
 import { LoadingSpinner } from '@/atoms';
 import { useSectionRouter } from '@/hooks/shared';
 import { getTransform } from '@/lib';
@@ -65,6 +66,7 @@ export default function DesktopShell({ isAppLoading }) {
         totalPages={4}
         onNavigate={goTo}
       />
+      <NowPill />
       <VantaBackground />
       <FloatingElements count={6} />
 
