@@ -2,6 +2,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScrollBoundary } from '@/hooks/shared';
 
+const TRANSITION_MS = 800;
+const MIN_DELTA = 5;
+const MAX_DELTA = 100;
+
 export function useProjectRouter(projectKeys, isMobile) {
   const [transition, setTransition] = useState({
     direction: null,
@@ -12,6 +16,8 @@ export function useProjectRouter(projectKeys, isMobile) {
   const wheelRef = useRef(null);
   const projectContentRef = useRef(null);
   const isProcessing = useRef(false);
+  const transitionRef = useRef(transition);
+  transitionRef.current = transition;
 
   const { canScrollDown, canScrollUp, hasOverflow } = useScrollBoundary(
     projectContentRef,
@@ -21,27 +27,25 @@ export function useProjectRouter(projectKeys, isMobile) {
   useEffect(() => {
     const handleWheel = (e) => {
       e.preventDefault();
-      if (
-        isProcessing.current ||
-        Math.abs(e.deltaY) < 5 ||
-        e.deltaY > 50
-      )
-        return;
+      if (isProcessing.current || Math.abs(e.deltaY) < MIN_DELTA) return;
 
-      const direction = e.deltaY > 0 ? 'down' : 'up';
+      const cappedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), MAX_DELTA);
+      const direction = cappedDelta > 0 ? 'down' : 'up';
 
       if (hasOverflow && projectContentRef.current) {
         if (direction === 'down' && canScrollDown) {
-          projectContentRef.current.scrollTop += e.deltaY;
+          e.stopPropagation();
+          projectContentRef.current.scrollTop += cappedDelta;
           return;
         }
         if (direction === 'up' && canScrollUp) {
-          projectContentRef.current.scrollTop += e.deltaY;
+          e.stopPropagation();
+          projectContentRef.current.scrollTop += cappedDelta;
           return;
         }
       }
 
-      const currentIndex = projectKeys.indexOf(transition.currentProject);
+      const currentIndex = projectKeys.indexOf(transitionRef.current.currentProject);
       if (
         (direction === 'down' && currentIndex === projectKeys.length - 1) ||
         (direction === 'up' && currentIndex === 0)
@@ -49,6 +53,7 @@ export function useProjectRouter(projectKeys, isMobile) {
         return;
       }
 
+      e.stopPropagation();
       isProcessing.current = true;
       const nextProject =
         direction === 'down'
@@ -57,7 +62,7 @@ export function useProjectRouter(projectKeys, isMobile) {
 
       setTransition({
         direction,
-        currentProject: transition.currentProject,
+        currentProject: transitionRef.current.currentProject,
         nextProject,
       });
     };
@@ -66,7 +71,7 @@ export function useProjectRouter(projectKeys, isMobile) {
     if (!node) return;
     node.addEventListener('wheel', handleWheel, { passive: false });
     return () => node.removeEventListener('wheel', handleWheel);
-  }, [transition, projectKeys, hasOverflow, canScrollDown, canScrollUp]);
+  }, [projectKeys, hasOverflow, canScrollDown, canScrollUp]);
 
   useEffect(() => {
     if (!transition.nextProject) return;
@@ -81,7 +86,7 @@ export function useProjectRouter(projectKeys, isMobile) {
         projectContentRef.current.scrollTop = 0;
       }
       isProcessing.current = false;
-    }, 800);
+    }, TRANSITION_MS);
     return () => clearTimeout(timer);
   }, [transition]);
 
