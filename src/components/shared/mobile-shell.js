@@ -1,10 +1,9 @@
 'use client';
-import VantaBackground from '../vanta-background';
-import ScrollProgress from '../scroll-progress';
-import FloatingElements from '../floating-elements';
-import Nav from '../nav';
-import CursorFollower from '../cursor-follower';
-import Footer from '../footer';
+import VantaBackground from './vanta-background';
+import ScrollProgress from './scroll-progress';
+import FloatingElements from './floating-elements';
+import Nav from './nav';
+import Footer from './footer';
 import { Hero, About, Experience, Projects } from '@/views';
 import { NAV_PAGES } from '@/constants/site';
 
@@ -38,7 +37,6 @@ export default function MobileShell({ currentPage = 'page-one' }) {
         isMobile={true}
         onNavigate={scrollToPage}
       />
-      <CursorFollower />
       <VantaBackground />
       <FloatingElements count={4} />
 
