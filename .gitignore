@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only artifacts
+.claude/
+.playwright-mcp/
+.review-output.html
+review-*.png
+review-snapshot.md
+verify-*.png
