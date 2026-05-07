@@ -6,3 +6,4 @@ export { default as ScrollProgress } from './scroll-progress';
 export { default as Nav } from './nav';
 export { default as Footer } from './footer';
 export { default as NowPill } from './now-pill';
+export { default as CommandPalette } from './command-palette';

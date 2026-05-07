@@ -6,6 +6,7 @@ import FloatingElements from './floating-elements';
 import Nav from './nav';
 import Footer from './footer';
 import NowPill from './now-pill';
+import CommandPalette from './command-palette';
 import { LoadingSpinner } from '@/atoms';
 import { useSectionRouter } from '@/hooks/shared';
 import { getTransform } from '@/lib';
@@ -72,6 +73,7 @@ export default function DesktopShell({ isAppLoading }) {
         onNavigate={goTo}
       />
       <NowPill />
+      <CommandPalette onNavigate={goTo} />
       <VantaBackground />
       <FloatingElements count={6} />
 
