@@ -1,13 +1,28 @@
 'use client';
+import dynamic from 'next/dynamic';
 import VantaBackground from '../vanta-background';
 import ScrollProgress from '../scroll-progress';
 import FloatingElements from '../floating-elements';
 import Nav from '../nav';
 import CursorFollower from '../cursor-follower';
 import Footer from '../footer';
+import { LoadingSpinner } from '@/atoms';
 import { useSectionRouter } from '@/hooks/shared';
 import { getTransform } from '@/lib';
-import { Hero, About, Experience, Projects } from '@/views';
+import Hero from '@/views/hero';
+
+const About = dynamic(() => import('@/views/about'), {
+  ssr: false,
+  loading: () => <LoadingSpinner size={40} />,
+});
+const Experience = dynamic(() => import('@/views/experience'), {
+  ssr: false,
+  loading: () => <LoadingSpinner size={40} />,
+});
+const Projects = dynamic(() => import('@/views/projects'), {
+  ssr: false,
+  loading: () => <LoadingSpinner size={40} />,
+});
 
 const PAGES = {
   'page-one': Hero,
