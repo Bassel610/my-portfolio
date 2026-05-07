@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Heading, Timeline } from '@/components/experience';
+import { Heading, Stats, Timeline } from '@/components/experience';
 
 export default function Experience() {
   return (
@@ -35,6 +35,7 @@ export default function Experience() {
           }}
         />
         <Heading />
+        <Stats />
         <Timeline />
       </Box>
     </Box>
