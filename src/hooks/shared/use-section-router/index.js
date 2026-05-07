@@ -1,14 +1,8 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { useScrollBoundary } from './use-scroll-boundary';
-
-const TRANSITION_MS = 800;
-const COOLDOWN_MS = 200;
-const MIN_DELTA = 10;
-const MAX_DELTA = 100;
-
-const STEP_KEYS = new Set(['ArrowDown', 'PageDown']);
-const STEP_BACK_KEYS = new Set(['ArrowUp', 'PageUp']);
+import { useScrollBoundary } from '../use-scroll-boundary';
+import { TRANSITION_MS, COOLDOWN_MS } from './constants';
+import { makeWheelHandler, makeKeyHandler } from './make-handlers';
 
 export function useSectionRouter(pageKeys, { isAppLoading, isMobile }) {
   const [transition, setTransition] = useState({
@@ -64,47 +58,22 @@ export function useSectionRouter(pageKeys, { isAppLoading, isMobile }) {
 
   useEffect(() => {
     if (isAppLoading || isMobile) return;
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-      if (isProcessing.current) return;
-      if (Math.abs(e.deltaY) < MIN_DELTA) return;
-
-      const cappedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), MAX_DELTA);
-      const direction = cappedDelta > 0 ? 'down' : 'up';
-
-      if (hasOverflow && sectionContentRef.current) {
-        if (direction === 'down' && canScrollDown) {
-          sectionContentRef.current.scrollTop += cappedDelta;
-          return;
-        }
-        if (direction === 'up' && canScrollUp) {
-          sectionContentRef.current.scrollTop += cappedDelta;
-          return;
-        }
-      }
-
-      stepRef.current(direction);
-    };
-
-    const handleKey = (e) => {
-      if (STEP_KEYS.has(e.key)) {
-        e.preventDefault();
-        stepRef.current('down');
-      } else if (STEP_BACK_KEYS.has(e.key)) {
-        e.preventDefault();
-        stepRef.current('up');
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        goToRef.current(pageKeys[0]);
-      } else if (e.key === 'End') {
-        e.preventDefault();
-        goToRef.current(pageKeys[pageKeys.length - 1]);
-      }
-    };
-
     const node = wheelRef.current;
     if (!node) return;
+
+    const step = (d) => stepRef.current?.(d);
+    const goTo = (id) => goToRef.current?.(id);
+
+    const handleWheel = makeWheelHandler({
+      isProcessing,
+      hasOverflow,
+      canScrollDown,
+      canScrollUp,
+      sectionContentRef,
+      step,
+    });
+    const handleKey = makeKeyHandler({ step, goTo, pageKeys });
+
     node.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('keydown', handleKey);
     return () => {

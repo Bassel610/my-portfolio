@@ -1,42 +1,16 @@
 'use client';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { NAV_PAGES } from '@/constants/site';
+import { useNavActive } from './use-nav-active';
+import Item from './Item';
+import Progress from './Progress';
 
 export default function Nav({ currentPage, totalPages, isMobile = false, onNavigate }) {
-  const [isVisible, setIsVisible] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    if (isMobile) {
-      const handleScroll = () => {
-        const scrollTop = window.scrollY;
-        const docHeight =
-          document.documentElement.scrollHeight - window.innerHeight;
-        const sectionHeight = docHeight / totalPages;
-        const currentSection = Math.min(
-          Math.floor(scrollTop / sectionHeight),
-          totalPages - 1
-        );
-        setActiveIndex(currentSection);
-        setIsVisible(true);
-      };
-
-      window.addEventListener('scroll', handleScroll);
-      handleScroll();
-      return () => window.removeEventListener('scroll', handleScroll);
-    } else {
-      const currentIndex = NAV_PAGES.findIndex((p) => p.id === currentPage);
-      setActiveIndex(currentIndex >= 0 ? currentIndex : 0);
-    }
-  }, [currentPage, totalPages, isMobile]);
-
-  useEffect(() => {
-    if (isMobile) return;
-    setIsVisible(true);
-    const timer = setTimeout(() => setIsVisible(false), 3000);
-    return () => clearTimeout(timer);
-  }, [currentPage, isMobile]);
+  const { isVisible, setIsVisible, activeIndex } = useNavActive({
+    currentPage,
+    totalPages,
+    isMobile,
+  });
 
   return (
     <motion.div
@@ -98,117 +72,18 @@ export default function Nav({ currentPage, totalPages, isMobile = false, onNavig
           }}
         >
           {NAV_PAGES.map((page, index) => (
-            <motion.div
+            <Item
               key={page.id}
-              onClick={() => onNavigate?.(page.id)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onNavigate?.(page.id);
-                }
-              }}
-              style={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: isMobile ? '6px 10px' : '8px 12px',
-                borderRadius: '25px',
-                cursor: 'pointer',
-                color:
-                  activeIndex === index ? '#fff' : 'rgba(255, 255, 255, 0.6)',
-                fontSize: isMobile ? '12px' : '14px',
-                fontWeight: '500',
-              }}
-              whileHover={{ scale: 1.05, color: '#fff' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {activeIndex === index && (
-                <motion.div
-                  layoutId="activeNav"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background:
-                      'linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1))',
-                    borderRadius: '25px',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                  }}
-                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                />
-              )}
-
-              <span
-                style={{
-                  fontSize: isMobile ? '14px' : '16px',
-                  position: 'relative',
-                  zIndex: 1,
-                }}
-              >
-                {page.icon}
-              </span>
-
-              {isMobile ? (
-                <span
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    whiteSpace: 'nowrap',
-                    fontSize: '11px',
-                    fontWeight: activeIndex === index ? '600' : '500',
-                  }}
-                >
-                  {page.name}
-                </span>
-              ) : (
-                <motion.span
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                  }}
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{
-                    width: activeIndex === index ? 'auto' : 0,
-                    opacity: activeIndex === index ? 1 : 0,
-                  }}
-                  whileHover={{ width: 'auto', opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {page.name}
-                </motion.span>
-              )}
-            </motion.div>
+              page={page}
+              index={index}
+              activeIndex={activeIndex}
+              isMobile={isMobile}
+              onNavigate={onNavigate}
+            />
           ))}
         </div>
 
-        <div
-          style={{
-            width: '60px',
-            height: '4px',
-            background: 'rgba(255, 255, 255, 0.2)',
-            borderRadius: '2px',
-            overflow: 'hidden',
-            marginLeft: '10px',
-          }}
-        >
-          <motion.div
-            style={{
-              height: '100%',
-              background: 'linear-gradient(90deg, #00d4ff, #ff00ff)',
-              borderRadius: '2px',
-            }}
-            initial={{ width: '0%' }}
-            animate={{ width: `${((activeIndex + 1) / totalPages) * 100}%` }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-          />
-        </div>
+        <Progress activeIndex={activeIndex} totalPages={totalPages} />
       </div>
     </motion.div>
   );
