@@ -19,6 +19,10 @@ const Experience = dynamic(() => import('@/views/experience'), {
   ssr: false,
   loading: () => <LoadingSpinner size={40} />,
 });
+const CaseStudy = dynamic(() => import('@/views/case-study'), {
+  ssr: false,
+  loading: () => <LoadingSpinner size={40} />,
+});
 const Projects = dynamic(() => import('@/views/projects'), {
   ssr: false,
   loading: () => <LoadingSpinner size={40} />,
@@ -28,7 +32,8 @@ const PAGES = {
   'page-one': Hero,
   'page-two': About,
   'page-three': Experience,
-  'page-four': Projects,
+  'page-four': CaseStudy,
+  'page-five': Projects,
 };
 const PAGE_KEYS = Object.keys(PAGES);
 
@@ -58,12 +63,12 @@ export default function DesktopShell({ isAppLoading }) {
     >
       <ScrollProgress
         currentPage={transition.currentPage}
-        totalPages={4}
+        totalPages={5}
         onNavigate={goTo}
       />
       <Nav
         currentPage={transition.currentPage}
-        totalPages={4}
+        totalPages={5}
         onNavigate={goTo}
       />
       <NowPill />

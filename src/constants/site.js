@@ -27,5 +27,6 @@ export const NAV_PAGES = [
   { id: 'page-one', sectionId: 'hero', name: 'Home', icon: '🏠' },
   { id: 'page-two', sectionId: 'about', name: 'About', icon: '👨‍💻' },
   { id: 'page-three', sectionId: 'experience', name: 'Experience', icon: '🚀' },
-  { id: 'page-four', sectionId: 'projects', name: 'Projects', icon: '💼' },
+  { id: 'page-four', sectionId: 'case-study', name: 'Case Study', icon: '📐' },
+  { id: 'page-five', sectionId: 'projects', name: 'Projects', icon: '💼' },
 ];

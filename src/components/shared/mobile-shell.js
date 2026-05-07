@@ -4,7 +4,7 @@ import ScrollProgress from './scroll-progress';
 import FloatingElements from './floating-elements';
 import Nav from './nav';
 import Footer from './footer';
-import { Hero, About, Experience, Projects } from '@/views';
+import { Hero, About, Experience, CaseStudy, Projects } from '@/views';
 import { NAV_PAGES } from '@/constants/site';
 
 function scrollToPage(pageId) {
@@ -27,13 +27,13 @@ export default function MobileShell({ currentPage = 'page-one' }) {
     >
       <ScrollProgress
         currentPage={currentPage}
-        totalPages={4}
+        totalPages={5}
         isMobile={true}
         onNavigate={scrollToPage}
       />
       <Nav
         currentPage={currentPage}
-        totalPages={4}
+        totalPages={5}
         isMobile={true}
         onNavigate={scrollToPage}
       />
@@ -44,6 +44,7 @@ export default function MobileShell({ currentPage = 'page-one' }) {
         <Hero />
         <About />
         <Experience />
+        <CaseStudy />
         <Projects />
         <Footer />
       </div>
