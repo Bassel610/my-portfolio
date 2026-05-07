@@ -96,6 +96,8 @@ export default function ImageWithFallback({
         <motion.img
           src={currentSrc}
           alt={alt}
+          loading="lazy"
+          decoding="async"
           onLoad={handleLoad}
           onError={handleError}
           initial={{ opacity: 0 }}

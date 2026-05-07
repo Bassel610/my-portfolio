@@ -7,6 +7,8 @@ export default function Image({ src, alt }) {
       component="img"
       src={src}
       alt={alt}
+      loading="lazy"
+      decoding="async"
       onError={(e) => {
         e.target.src = '/images/project-placeholder.png';
       }}
