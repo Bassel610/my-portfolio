@@ -1,5 +1,9 @@
 'use client';
-import { ErrorBoundary } from '@/components/error';
+import {
+  ErrorBoundary,
+  GlobalErrorHandler,
+  OfflineBanner,
+} from '@/components/error';
 import { LoadingSpinner } from '@/atoms';
 import { DesktopShell, MobileShell } from '@/components/shared';
 import { useAppLoading, useMobile } from '@/hooks/shared';
@@ -14,6 +18,8 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
+      <OfflineBanner />
+      <GlobalErrorHandler />
       {isMobile ? <MobileShell /> : <DesktopShell isAppLoading={isAppLoading} />}
     </ErrorBoundary>
   );
