@@ -20,6 +20,7 @@ export default function Nav() {
       }}
     >
       <Box
+        className="nav-pill"
         sx={{
           position: 'relative',
           display: 'flex',
@@ -29,9 +30,8 @@ export default function Nav() {
           px: { xs: 1.25, md: 2 },
           py: 0.85,
           borderRadius: 'var(--radius-pill)',
-          background: 'color-mix(in oklab, var(--bg-1) 78%, transparent)',
           border: '1px solid var(--line)',
-          backdropFilter: 'blur(10px)',
+          backdropFilter: 'blur(20px)',
           boxShadow: '0 1px 0 var(--line) inset, 0 6px 24px rgba(0,0,0,0.18)',
         }}
       >

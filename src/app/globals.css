@@ -6,8 +6,8 @@
   --plate:       oklch(0.215 0.009 70);
 
   --fg:          oklch(0.96 0.005 80);
-  --fg-dim:      oklch(0.72 0.008 75);
-  --fg-mute:     oklch(0.50 0.008 75);
+  --fg-dim:      oklch(0.74 0.008 75);
+  --fg-mute:     oklch(0.55 0.008 75);
 
   --line:        oklch(0.27 0.01 70);
   --line-strong: oklch(0.34 0.012 70);
@@ -15,7 +15,7 @@
   --accent:      oklch(0.84 0.13 80);
   --accent-soft: oklch(0.84 0.13 80 / 0.08);
   --accent-line: oklch(0.84 0.13 80 / 0.35);
-  --accent-ink:  oklch(0.18 0.02 70);
+  --accent-ink:  #1a1714;
 
   --orb-1:       oklch(0.84 0.13 80 / 0.10);
   --orb-2:       oklch(0.65 0.08 240 / 0.10);
@@ -102,6 +102,10 @@ img, svg { display: block; max-width: 100%; }
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ─── nav pill: explicit theme-aware bg so it can't leak ──── */
+.nav-pill { background: rgba(28, 25, 20, 0.7); }
+[data-theme='light'] .nav-pill { background: rgba(255, 250, 240, 0.7); }
 
 /* ─── mobile touch targets ─────────────────────────────────── */
 @media (max-width: 768px) {
