@@ -18,6 +18,8 @@ export default function Journey() {
         sx={{
           position: 'relative',
           maxWidth: 880,
+          mx: { xs: 'auto', md: 0 },
+          textAlign: 'left',
           '&::before': {
             content: '""',
             position: 'absolute',

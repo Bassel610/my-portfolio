@@ -39,6 +39,7 @@ export default function MobileMenu({ links }) {
             p: 1,
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
             gap: 0.25,
             background: 'var(--bg-1)',
             border: '1px solid var(--line)',

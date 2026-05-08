@@ -19,9 +19,18 @@ export default function Hero() {
           gridTemplateColumns: { xs: '1fr', md: '1fr auto' },
           gap: { xs: 4, md: 6 },
           alignItems: { md: 'flex-start' },
+          justifyItems: { xs: 'center', md: 'stretch' },
+          textAlign: { xs: 'center', md: 'left' },
         }}
       >
-        <Box sx={{ order: { xs: 2, md: 1 } }}>
+        <Box
+          sx={{
+            order: { xs: 2, md: 1 },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: { xs: 'center', md: 'flex-start' },
+          }}
+        >
           <Reveal>
             <Headline />
           </Reveal>
@@ -36,7 +45,7 @@ export default function Hero() {
             display: 'flex',
             flexDirection: 'column',
             gap: { xs: 2, md: 2.5 },
-            alignItems: { xs: 'flex-start', md: 'flex-end' },
+            alignItems: { xs: 'center', md: 'flex-end' },
           }}
         >
           <Reveal>

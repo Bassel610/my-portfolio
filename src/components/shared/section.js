@@ -20,6 +20,7 @@ export default function Section({ id, plate = false, children, py = true }) {
           mx: 'auto',
           px: 'clamp(24px, 5vw, 56px)',
           position: 'relative',
+          textAlign: { xs: 'center', md: 'left' },
         }}
       >
         {children}

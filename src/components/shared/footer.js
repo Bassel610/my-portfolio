@@ -39,10 +39,11 @@ export default function Footer() {
         <Box
           sx={{
             display: 'flex',
-            alignItems: { xs: 'flex-start', sm: 'center' },
-            justifyContent: 'space-between',
+            alignItems: 'center',
+            justifyContent: { xs: 'center', sm: 'space-between' },
             flexWrap: 'wrap',
             gap: 1.5,
+            textAlign: { xs: 'center', sm: 'left' },
           }}
         >
           <Typography
@@ -71,6 +72,7 @@ export default function Footer() {
             display: 'flex',
             gap: 2.5,
             flexWrap: 'wrap',
+            justifyContent: { xs: 'center', sm: 'flex-start' },
           }}
         >
           {CONTACT.channels.map((c) => {

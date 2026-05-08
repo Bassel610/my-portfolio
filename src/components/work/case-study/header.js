@@ -6,7 +6,16 @@ import { Button } from '@/components/shared';
 export default function Header({ index, title, category, year, pill, tag, actions }) {
   return (
     <Box sx={{ pb: 2, borderBottom: '1px solid var(--line)' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25, flexWrap: 'wrap', mb: 1.25 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: { xs: 'center', md: 'flex-start' },
+          gap: 1.25,
+          flexWrap: 'wrap',
+          mb: 1.25,
+        }}
+      >
         <MonoNumber value={index} />
         <Typography
           component="span"
@@ -47,7 +56,14 @@ export default function Header({ index, title, category, year, pill, tag, action
       >
         {tag}
       </Typography>
-      <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 1,
+          flexWrap: 'wrap',
+          justifyContent: { xs: 'center', md: 'flex-start' },
+        }}
+      >
         {actions.map((a, i) => (
           <Button key={a.href} href={a.href} variant={i === 0 ? 'solid' : 'outline'} size="sm">
             {a.label}
