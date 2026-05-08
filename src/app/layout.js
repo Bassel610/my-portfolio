@@ -65,7 +65,16 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <div id="boot-loader" aria-hidden="true">
-          <span className="boot-spin" />
+          <div className="boot-mark">Basel Sherif</div>
+          <svg
+            className="boot-rule"
+            viewBox="0 0 220 4"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path d="M0 2 L220 2" />
+          </svg>
+          <span className="boot-cap">PORTFOLIO &middot; 2026</span>
         </div>
         <ThemeRegistry>
           <BootLoaderHider />

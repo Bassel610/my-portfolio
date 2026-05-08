@@ -111,39 +111,100 @@ img, svg { display: block; max-width: 100%; }
 .nav-pill { background: rgba(28, 25, 20, 0.7); }
 [data-theme='light'] .nav-pill { background: rgba(255, 250, 240, 0.7); }
 
-/* ─── boot loader: masks the FOUC moment before React hydrates ── */
+/* ─── boot loader: editorial monogram + drawn-in gold rule ───── */
 #boot-loader {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 18px;
+  padding: 0 24px;
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.01em;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: opacity 0.45s var(--ease-smooth), visibility 0.45s var(--ease-smooth);
+  text-align: center;
+  transition:
+    opacity 0.55s var(--ease-smooth),
+    visibility 0.55s var(--ease-smooth),
+    transform 0.55s var(--ease-smooth);
+}
+
+#boot-loader::before {
+  /* faint warm orb in the upper-center — same family as HeroBackdrop */
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 720px;
+  max-height: 720px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, var(--accent) 0%, transparent 65%);
+  opacity: 0.05;
+  filter: blur(20px);
+  pointer-events: none;
 }
 
 [data-app-loaded] #boot-loader {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transform: translateY(-6px);
 }
 
-.boot-spin {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--line-strong);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: bootSpin 0.85s linear infinite;
+.boot-mark {
+  position: relative;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.85rem, 4.6vw, 2.5rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--fg);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: bootFadeUp 0.55s var(--ease-smooth) 0.05s forwards;
 }
-@keyframes bootSpin { to { transform: rotate(360deg); } }
+
+.boot-rule {
+  position: relative;
+  width: clamp(150px, 22vw, 220px);
+  height: 2px;
+  display: block;
+  overflow: visible;
+}
+.boot-rule path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: bootRule 0.75s var(--ease-smooth) 0.35s forwards;
+}
+
+.boot-cap {
+  position: relative;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  opacity: 0;
+  animation: bootFadeIn 0.45s var(--ease-smooth) 0.85s forwards;
+}
+
+@keyframes bootFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bootFadeIn {
+  to { opacity: 1; }
+}
+@keyframes bootRule {
+  to { stroke-dashoffset: 0; }
+}
 
 /* ─── mobile touch targets ─────────────────────────────────── */
 @media (max-width: 768px) {
