@@ -7,3 +7,4 @@ export { default as MonoNumber } from './mono-number';
 export { default as BrowserFrame } from './browser-frame';
 export { default as GrainOverlay } from './grain-overlay';
 export { default as GoldUnderline } from './gold-underline';
+export { default as BrandIcon } from './brand-icon';

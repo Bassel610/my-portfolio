@@ -1,8 +1,12 @@
 'use client';
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Mail, Linkedin, Github, MessageCircle, Copy, Check } from 'lucide-react';
+import { Mail, MessageCircle, Copy, Check } from 'lucide-react';
+import { BrandIcon } from '@/atoms';
 import { CONTACT } from '@/constants/contact';
+
+const Linkedin = (props) => <BrandIcon name="linkedin" {...props} />;
+const Github = (props) => <BrandIcon name="github" {...props} />;
 
 const ICON = {
   email: Mail,

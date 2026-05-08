@@ -9,8 +9,8 @@ import { useMemo } from 'react';
 const theme = createTheme({
   shape: { borderRadius: 12 },
   palette: {
-    mode: 'dark',
-    primary: { main: '#e8b755', contrastText: '#1a1714' },
+    mode: 'light',
+    primary: { main: '#b5742a', contrastText: '#fff8ec' },
   },
   typography: {
     fontFamily: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif',

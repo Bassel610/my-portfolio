@@ -1,5 +1,6 @@
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import ThemeRegistry from '@/components/shared/theme-registry';
+import BootLoaderHider from '@/components/shared/boot-loader';
 import './globals.css';
 
 const display = Space_Grotesk({
@@ -50,7 +51,7 @@ export const viewport = {
   userScalable: true,
 };
 
-const themeBootScript = `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','dark');}}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`;
+const themeBootScript = `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','light');}}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
 export default function RootLayout({ children }) {
   return (
@@ -63,7 +64,13 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
       </head>
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <div id="boot-loader" aria-hidden="true">
+          <span className="boot-spin" />
+        </div>
+        <ThemeRegistry>
+          <BootLoaderHider />
+          {children}
+        </ThemeRegistry>
       </body>
     </html>
   );

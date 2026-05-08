@@ -4,9 +4,9 @@ import { useCallback, useEffect, useState } from 'react';
 const STORAGE_KEY = 'portfolio-theme';
 
 function readInitial() {
-  if (typeof window === 'undefined') return 'dark';
+  if (typeof window === 'undefined') return 'light';
   const saved = window.localStorage.getItem(STORAGE_KEY);
-  return saved === 'light' || saved === 'dark' ? saved : 'dark';
+  return saved === 'light' || saved === 'dark' ? saved : 'light';
 }
 
 function applyTheme(value) {
@@ -15,7 +15,7 @@ function applyTheme(value) {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     const initial = readInitial();

@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Optimize for static export and Netlify
   output: 'export',
   trailingSlash: true,
-  images: {
-    unoptimized: true
+  images: { unoptimized: true },
+  // lucide-react v1 ships with a non-standard barrel shape; Next 15's
+  // optimizePackageImports (auto-enabled for lucide-react) emits
+  // false-positive "Attempted import error" warnings at build time.
+  // Override the default list and leave lucide-react out.
+  experimental: {
+    optimizePackageImports: ['@mui/material', '@mui/icons-material', 'framer-motion'],
   },
-  // Disable server-side features for static export
 };
 
 export default nextConfig;
