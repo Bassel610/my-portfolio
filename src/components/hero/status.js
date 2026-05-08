@@ -21,12 +21,12 @@ export default function Status() {
             height: 7,
             borderRadius: '50%',
             background: 'var(--accent)',
-            boxShadow: '0 0 0 0 rgba(232, 183, 85, 0.55)',
+            boxShadow: '0 0 0 0 var(--accent-line)',
             animation: 'heroDot 1.8s ease-out infinite',
             '@keyframes heroDot': {
-              '0%': { boxShadow: '0 0 0 0 rgba(232, 183, 85, 0.55)' },
-              '70%': { boxShadow: '0 0 0 8px rgba(232, 183, 85, 0)' },
-              '100%': { boxShadow: '0 0 0 0 rgba(232, 183, 85, 0)' },
+              '0%': { boxShadow: '0 0 0 0 var(--accent-line)' },
+              '70%': { boxShadow: '0 0 0 8px transparent' },
+              '100%': { boxShadow: '0 0 0 0 transparent' },
             },
           }}
         />

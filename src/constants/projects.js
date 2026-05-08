@@ -1,17 +1,48 @@
-const slidesFor = (slug, labels) =>
-  labels.map((label, i) => ({
-    src: `/images/projects/${slug}-${i + 1}.png`,
-    label,
+const slidesFor = (slug, indices, labels) =>
+  indices.map((i, n) => ({
+    src: `/images/projects/${slug}-${i}.png`,
+    label: labels[n] ?? `Slide ${n + 1}`,
   }));
 
 export const WORK_SECTION = {
   eyebrow: 'Recent projects',
   title: 'Work I keep going back to.',
   right:
-    'A short, deliberate list. Eight live projects, two in view by default — the rest one tap away.',
+    'A short, deliberate list. Eight live projects, two in view by default — the rest two clicks away.',
 };
 
 export const PROJECTS = [
+  {
+    id: 'twindix',
+    title: 'Twindix Executive Platform',
+    category: 'Assessment platform',
+    year: 2025,
+    pill: { tone: 'accent', label: 'Live' },
+    tag:
+      'A research-backed talent assessment platform — Twindix Executives (8 leadership indicators) and Job Bar (matching candidates to 12,000+ global roles) — distilled from 1,500+ executives and 230+ business models.',
+    overview: [
+      "The marketing front door for Twindix's flagship products, with the assessment tooling living behind login. Built on Next.js + MUI; the page is the first thing every prospective HR client sees, so it earns its weight in conversion, not just visuals.",
+      "Tuned for SEO and first-paint speed, with bilingual-ready content and a clean hand-off into the gated assessment shell.",
+    ],
+    features: [
+      'Next.js marketing site tuned for SEO + first-paint speed.',
+      'Eight executive indicators surfaced as scannable copy blocks.',
+      'Direct hand-off to the gated assessment shell.',
+      'Bilingual-ready content layout.',
+    ],
+    meta: {
+      stack: ['React', 'Next.js', 'MUI', 'REST API'],
+      role: 'Frontend',
+      timeline: '2025',
+      reach: 'Public marketing + client gateway',
+    },
+    slides: slidesFor(
+      'twindix',
+      [1, 2, 3, 4, 5, 6],
+      ['Hero', 'Indicators', 'Job Bar', 'Models', 'Industries', 'Footer']
+    ),
+    actions: [{ kind: 'live', href: 'https://twindix.com/', label: 'Visit site' }],
+  },
   {
     id: 'twindix-performance-indicator',
     title: 'Twindix Performance Indicator',
@@ -25,7 +56,7 @@ export const PROJECTS = [
       'Reports persist server-side; the binary regenerates from raw scores so the design can change without a backfill. Cut **page load by 40%** and lifted engagement **25%** in the first month after rollout.',
     ],
     features: [
-      'Role-resolver routing — admins never see HR\'s nav, HR never sees admin actions.',
+      "Role-resolver routing — admins never see HR's nav, HR never sees admin actions.",
       'Front-end PDF reports — page-break edge cases QA-tested per release.',
       'Re-download from history without re-running the assessment.',
       'Manual end-to-end QA pass per role on every PR.',
@@ -33,44 +64,28 @@ export const PROJECTS = [
     meta: {
       stack: ['React', 'MUI', 'REST API', 'jsPDF', 'Auth'],
       role: 'Lead frontend',
-      timeline: '2025 — present',
+      timeline: '2025 — 2026',
       reach: 'Internal HR teams + external clients',
     },
-    slides: slidesFor('twindix-performance-indicator', [
-      'Login',
-      'Dashboard',
-      'Project list',
-    ]),
+    slides: slidesFor(
+      'twindix-performance-indicator',
+      [4, 3, 5, 6, 7, 8, 9],
+      [
+        'Tasks (Kanban)',
+        'Projects',
+        'Blockers',
+        'Users',
+        'Teams',
+        'Red flags',
+        'Decisions',
+      ]
+    ),
     actions: [
-      { kind: 'live', href: 'https://twindix-performance-indicator.netlify.app/login', label: 'Live demo' },
-    ],
-  },
-  {
-    id: 'twindix',
-    title: 'Twindix Executive Platform',
-    category: 'Assessment platform',
-    year: 2025,
-    pill: { tone: 'accent', label: 'Live' },
-    tag:
-      'A research-backed talent assessment platform — Twindix Executives (8 leadership indicators) and Job Bar (matching candidates to 12,000+ global roles) — distilled from 1,500+ executives and 230+ business models.',
-    overview: [
-      "Marketing front door for Twindix's flagship products, with the assessment tooling living behind login. Built on Next.js + MUI; the page is the first thing every prospective HR client sees, so it earns its weight in conversion, not just visuals.",
-    ],
-    features: [
-      'Next.js marketing site tuned for SEO + first-paint speed.',
-      'Eight executive indicators, surfaced as scannable copy blocks.',
-      'Direct hand-off to the gated assessment shell.',
-      'Bilingual-ready content layout.',
-    ],
-    meta: {
-      stack: ['React', 'Next.js', 'MUI', 'REST API'],
-      role: 'Frontend',
-      timeline: '2025',
-      reach: 'Public marketing + client gateway',
-    },
-    slides: slidesFor('twindix', ['Hero', 'Indicators', 'Job Bar']),
-    actions: [
-      { kind: 'live', href: 'https://twindix.com/', label: 'Visit site' },
+      {
+        kind: 'live',
+        href: 'https://twindix-performance-indicator.netlify.app/login',
+        label: 'Live demo',
+      },
     ],
   },
   {
@@ -96,9 +111,17 @@ export const PROJECTS = [
       timeline: '2025',
       reach: 'HR teams (gated)',
     },
-    slides: slidesFor('twindix-benchmark', ['Login', 'Shell', 'Builder']),
+    slides: slidesFor(
+      'twindix-benchmark',
+      [2, 3, 1],
+      ['Admin shell', 'Builder form', 'Login']
+    ),
     actions: [
-      { kind: 'live', href: 'https://benchmark.twindix.com/benchmark', label: 'See it live' },
+      {
+        kind: 'live',
+        href: 'https://benchmark.twindix.com/benchmark',
+        label: 'See it live',
+      },
     ],
   },
   {
@@ -108,7 +131,7 @@ export const PROJECTS = [
     year: 2025,
     pill: { tone: 'muted', label: 'Login-gated' },
     tag:
-      "A career-fit application built on top of the Twindix assessment engine: scores a behavioural profile against thousands of role descriptions and surfaces the closest fits with a per-role explanation of why.",
+      'A career-fit application built on top of the Twindix assessment engine: scores a behavioural profile against thousands of role descriptions and surfaces the closest fits with a per-role explanation of why.',
     overview: [
       'One funnel from quiz to ranked result list. The UX is deliberately lightweight — answer the questionnaire, get a list, see why each role made the top.',
     ],
@@ -116,7 +139,7 @@ export const PROJECTS = [
       'Single-funnel flow from quiz to ranked results.',
       'Per-role explanations grounded in trait scores.',
       'Job Bar integration for live job-description matches.',
-      'Demo opens on the login screen — by design.',
+      'Login-gated client demo.',
     ],
     meta: {
       stack: ['React', 'MUI', 'REST API'],
@@ -124,9 +147,17 @@ export const PROJECTS = [
       timeline: '2025',
       reach: 'Individual candidates (gated)',
     },
-    slides: slidesFor('careerfinder', ['Login', 'Shell', 'Code entry', 'Results']),
+    slides: slidesFor(
+      'careerfinder',
+      [3, 4, 1],
+      ['Admin profile', 'Job Bar code entry', 'Login']
+    ),
     actions: [
-      { kind: 'live', href: 'https://careerfinder.twindix.com/login', label: 'See it live' },
+      {
+        kind: 'live',
+        href: 'https://careerfinder.twindix.com/login',
+        label: 'See it live',
+      },
     ],
   },
   {
@@ -153,15 +184,29 @@ export const PROJECTS = [
       timeline: '2024',
       reach: 'Public site + admin console',
     },
-    slides: slidesFor('data-nile', [
-      'Home',
-      'Admin login',
-      'Manage home',
-      'Manage layout',
-    ]),
+    slides: slidesFor(
+      'data-nile',
+      [1, 3, 4, 5, 6, 2],
+      [
+        'Public home',
+        'Manage home',
+        'Manage images',
+        'Manage layout',
+        'Invites',
+        'Admin gate',
+      ]
+    ),
     actions: [
-      { kind: 'live', href: 'https://lambent-choux-e63b31.netlify.app/', label: 'Visit site' },
-      { kind: 'github', href: 'https://github.com/Bassel610/Data_Nile', label: 'GitHub' },
+      {
+        kind: 'live',
+        href: 'https://lambent-choux-e63b31.netlify.app/',
+        label: 'Visit site',
+      },
+      {
+        kind: 'github',
+        href: 'https://github.com/Bassel610/Data_Nile',
+        label: 'GitHub',
+      },
     ],
   },
   {
@@ -187,12 +232,11 @@ export const PROJECTS = [
       timeline: '2024',
       reach: 'Public storefront',
     },
-    slides: slidesFor('pico', [
-      'Storefront',
-      'Product detail',
-      'Cart',
-      'Checkout',
-    ]),
+    slides: slidesFor(
+      'pico',
+      [1, 2, 3, 4, 5],
+      ['Storefront', 'Product detail', 'Cart', 'Checkout', 'Login popup']
+    ),
     actions: [
       { kind: 'live', href: 'https://picco.netlify.app/', label: 'Visit site' },
       { kind: 'github', href: 'https://github.com/Bassel610/PICO', label: 'GitHub' },
@@ -210,7 +254,7 @@ export const PROJECTS = [
       'React 18 + Vite 5 + MUI 6 + Swiper. ColorThief and fast-average-color extract dominant colours from each project hero so the chrome theme follows the work, not the other way round. Mobile-first, semantic SEO, contact form with validation.',
     ],
     features: [
-      'Theme-from-hero — chrome adapts to each project\'s colour world.',
+      "Theme-from-hero — chrome adapts to each project's colour world.",
       'Lazy-loaded galleries powered by Swiper.',
       'Mobile-first layouts, semantic SEO markup.',
       'Contact form with client-side validation.',
@@ -221,10 +265,22 @@ export const PROJECTS = [
       timeline: '2024',
       reach: 'Designer portfolio site',
     },
-    slides: slidesFor('linas-portfolio', ['Home', 'My Work', 'About']),
+    slides: slidesFor(
+      'linas-portfolio',
+      [1, 2, 3, 4],
+      ['Home', 'My Work', 'About', 'Contact']
+    ),
     actions: [
-      { kind: 'live', href: 'https://linas-portfolio.netlify.app/', label: 'Visit site' },
-      { kind: 'github', href: 'https://github.com/Bassel610/linas-portfolio', label: 'GitHub' },
+      {
+        kind: 'live',
+        href: 'https://linas-portfolio.netlify.app/',
+        label: 'Visit site',
+      },
+      {
+        kind: 'github',
+        href: 'https://github.com/Bassel610/linas-portfolio',
+        label: 'GitHub',
+      },
     ],
   },
   {
@@ -236,7 +292,7 @@ export const PROJECTS = [
     tag:
       'A full-stack tool for capturing audio in the browser and turning sessions into structured PDF reports — recorded with react-mic, persisted via Firebase, exported via jsPDF.',
     overview: [
-      "React + Vite frontend records via react-mic and audio-react-recorder. Express backend persists sessions to Firestore through Firebase 12. jsPDF + jspdf-autotable produce tabular exports clean enough to send to a client. Auth-gated with Firebase Auth, CORS-aware for the API split.",
+      'React + Vite frontend records via react-mic and audio-react-recorder. Express backend persists sessions to Firestore through Firebase 12. jsPDF + jspdf-autotable produce tabular exports clean enough to send to a client. Auth-gated with Firebase Auth, CORS-aware for the API split.',
     ],
     features: [
       'Browser audio capture via react-mic / audio-react-recorder.',
@@ -250,12 +306,21 @@ export const PROJECTS = [
       timeline: '2024',
       reach: 'Internal tool',
     },
-    slides: slidesFor('dalilk', ['Home', 'Detail']),
+    slides: slidesFor('dalilk', [1, 2], ['Home', 'Detail']),
     actions: [
-      { kind: 'live', href: 'https://mellow-pixie-196274.netlify.app/', label: 'Visit site' },
-      { kind: 'github', href: 'https://github.com/Bassel610/Dalilk', label: 'GitHub' },
+      {
+        kind: 'live',
+        href: 'https://mellow-pixie-196274.netlify.app/',
+        label: 'Visit site',
+      },
+      {
+        kind: 'github',
+        href: 'https://github.com/Bassel610/Dalilk',
+        label: 'GitHub',
+      },
     ],
   },
 ];
 
 export const VISIBLE_BY_DEFAULT = 2;
+export const SHOW_MORE_STEP = 2;

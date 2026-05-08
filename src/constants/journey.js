@@ -7,7 +7,7 @@ export const JOURNEY_SECTION = {
 
 export const JOURNEY = [
   {
-    year: '2025 — present',
+    year: '2025 — 2026',
     role: 'Frontend Engineer · Twindix',
     location: 'Remote',
     body:

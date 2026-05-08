@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import { Button } from '@/components/shared';
 import { CONTACT } from '@/constants/contact';
+import { appendMessage } from '@/lib/inbox';
 
 const FIELD_SX = {
   width: '100%',
@@ -22,6 +23,9 @@ export default function Form() {
   const [submitted, setSubmitted] = useState(false);
   const onSubmit = (e) => {
     e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+    appendMessage(data);
+    e.currentTarget.reset();
     setSubmitted(true);
   };
 
@@ -38,8 +42,8 @@ export default function Form() {
           lineHeight: 1.55,
         }}
       >
-        Thanks — message logged locally. Wire this form to your inbox by
-        replacing the submit handler with your endpoint of choice.
+        Thanks — your message has been delivered. I&apos;ll reply within 24h
+        (Cairo time).
       </Box>
     );
   }

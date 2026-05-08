@@ -15,6 +15,12 @@ export const CONTACT = {
       copyValue: 'Baselsherif9@gmail.com',
     },
     {
+      kind: 'whatsapp',
+      label: '+20 101 183 0985',
+      href: 'https://wa.me/201011830985',
+      copyValue: '+201011830985',
+    },
+    {
       kind: 'linkedin',
       label: 'linkedin.com/in/basel-sherif-68330a217',
       href: 'https://www.linkedin.com/in/basel-sherif-68330a217',

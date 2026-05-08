@@ -2,14 +2,20 @@
 import { useState } from 'react';
 import { Box } from '@mui/material';
 import { SectionHead } from '@/components/shared';
-import { PROJECTS, WORK_SECTION, VISIBLE_BY_DEFAULT } from '@/constants/projects';
+import {
+  PROJECTS,
+  WORK_SECTION,
+  VISIBLE_BY_DEFAULT,
+  SHOW_MORE_STEP,
+} from '@/constants/projects';
 import CaseStudy from './case-study';
 import ShowMore from './show-more';
 
 export default function Work() {
-  const [showAll, setShowAll] = useState(false);
+  const [visible, setVisible] = useState(VISIBLE_BY_DEFAULT);
   const total = PROJECTS.length;
-  const remaining = total - VISIBLE_BY_DEFAULT;
+  const remaining = Math.max(0, total - visible);
+  const nextStep = Math.min(SHOW_MORE_STEP, remaining);
 
   return (
     <>
@@ -25,17 +31,18 @@ export default function Work() {
             key={project.id}
             project={project}
             index={i}
-            hidden={!showAll && i >= VISIBLE_BY_DEFAULT}
+            hidden={i >= visible}
           />
         ))}
       </Box>
-      {!showAll && remaining > 0 && (
-        <ShowMore
-          remaining={remaining}
-          total={total}
-          onClick={() => setShowAll(true)}
-        />
-      )}
+      <ShowMore
+        canShowMore={remaining > 0}
+        canShowLess={visible > VISIBLE_BY_DEFAULT}
+        nextStep={nextStep}
+        hiddenCount={visible - VISIBLE_BY_DEFAULT}
+        onShowMore={() => setVisible((v) => Math.min(total, v + SHOW_MORE_STEP))}
+        onShowLess={() => setVisible(VISIBLE_BY_DEFAULT)}
+      />
     </>
   );
 }

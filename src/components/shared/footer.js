@@ -1,10 +1,15 @@
 'use client';
 import { Box, Typography } from '@mui/material';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageCircle } from 'lucide-react';
 import { SITE } from '@/constants/site';
 import { CONTACT } from '@/constants/contact';
 
-const ICON = { github: Github, linkedin: Linkedin, email: Mail };
+const ICON = {
+  github: Github,
+  linkedin: Linkedin,
+  email: Mail,
+  whatsapp: MessageCircle,
+};
 
 export default function Footer() {
   return (

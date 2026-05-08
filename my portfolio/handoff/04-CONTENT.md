@@ -8,7 +8,7 @@ and specific, not generic.
 - Eyebrow: `BASEL SHERIF — FRONTEND ENGINEER`
 - Headline (with handwritten underline on "inevitable"):
   > Crafting interfaces that feel **inevitable**, from React to the runtime.
-- Sub: "I design and build production-grade frontends — the kind that ship, scale, and stay maintainable six months later."
+- Sub: "I design and build production-grade frontends — the kind that ship, scale, and stay maintainable"
 - CTAs: `View work` · `Get in touch`
 - Status block:
   - Dot (gold, pulsing) + "Available for senior FE roles"

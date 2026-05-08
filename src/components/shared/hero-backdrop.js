@@ -21,10 +21,12 @@ export default function HeroBackdrop() {
           maxWidth: 1100,
           maxHeight: 1100,
           transform: 'translateX(-50%)',
-          background: 'radial-gradient(closest-side, var(--accent) 0%, transparent 60%)',
+          background:
+            'radial-gradient(closest-side, var(--accent) 0%, transparent 60%)',
           opacity: 0.07,
           filter: 'blur(20px)',
         },
+        '[data-theme="light"] &::before': { opacity: 0.04 },
       }}
     />
   );

@@ -1,10 +1,15 @@
 'use client';
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Mail, Linkedin, Github, Copy, Check } from 'lucide-react';
+import { Mail, Linkedin, Github, MessageCircle, Copy, Check } from 'lucide-react';
 import { CONTACT } from '@/constants/contact';
 
-const ICON = { email: Mail, linkedin: Linkedin, github: Github };
+const ICON = {
+  email: Mail,
+  whatsapp: MessageCircle,
+  linkedin: Linkedin,
+  github: Github,
+};
 
 function CopyButton({ value }) {
   const [copied, setCopied] = useState(false);

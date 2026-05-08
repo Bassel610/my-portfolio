@@ -5,6 +5,7 @@ import { HeroBackdrop } from '@/components/shared';
 import Headline from './headline';
 import CTAs from './ctas';
 import Status from './status';
+import Avatar from './avatar';
 
 export default function Hero() {
   return (
@@ -28,7 +29,19 @@ export default function Hero() {
             <CTAs />
           </Reveal>
         </Box>
-        <Box sx={{ order: { xs: 1, md: 2 }, minWidth: { md: 220 } }}>
+        <Box
+          sx={{
+            order: { xs: 1, md: 2 },
+            minWidth: { md: 220 },
+            display: 'flex',
+            flexDirection: 'column',
+            gap: { xs: 2, md: 2.5 },
+            alignItems: { xs: 'flex-start', md: 'flex-end' },
+          }}
+        >
+          <Reveal>
+            <Avatar />
+          </Reveal>
           <Reveal delay={0.05}>
             <Status />
           </Reveal>

@@ -4,7 +4,7 @@ export const HERO = {
   headlineHighlight: 'inevitable',
   headlineTail: ', from React to the runtime.',
   sub:
-    'I design and build production-grade frontends — the kind that ship, scale, and stay maintainable six months later.',
+    'I design and build production-grade frontends — the kind that ship, scale, and stay maintainable',
   ctas: [
     { href: '#work', label: 'View work', variant: 'solid' },
     { href: '#contact', label: 'Get in touch', variant: 'outline' },
