@@ -1,108 +1,261 @@
-const numbered = (slug, indices) =>
-  indices.map((i) => `/images/projects/${slug}-${i}.png`);
+const slidesFor = (slug, labels) =>
+  labels.map((label, i) => ({
+    src: `/images/projects/${slug}-${i + 1}.png`,
+    label,
+  }));
+
+export const WORK_SECTION = {
+  eyebrow: 'Recent projects',
+  title: 'Work I keep going back to.',
+  right:
+    'A short, deliberate list. Eight live projects, two in view by default — the rest one tap away.',
+};
 
 export const PROJECTS = [
   {
-    id: 'project-1',
-    slug: 'twindix',
-    name: 'Twindix Executive Platform',
-    type: 'Assessment Platform',
-    tech: ['React', 'Next.js', 'MUI', 'REST API'],
-    description:
-      "A research-backed talent assessment platform for executives and HR teams. Built around two flagship assessments — Twindix Executives (8 leadership indicators) and Job Bar (matching candidates to 12,000+ global roles) — that turn behavioural science into actionable hiring and team-building decisions. The models behind it are distilled from 1,500+ executives, 230+ business models and 1,400+ work environments. The marketing site is the front door; the assessment tooling lives behind login.",
-    images: numbered('twindix', [1, 2, 3, 4, 5, 6]),
-    liveUrl: 'https://twindix.com/',
-    repoUrl: null,
+    id: 'twindix-performance-indicator',
+    title: 'Twindix Performance Indicator',
+    category: 'Multi-role dashboard',
+    year: 2025,
+    pill: { tone: 'accent', label: 'Live' },
+    tag:
+      'A multi-role assessment dashboard with three personas — User, HR, Admin — each landing on a different shell, with PDF reports generated entirely on the front end.',
+    overview: [
+      'Owned the frontend on this one. A single React shell with a role-resolver at boot, three role-specific landings, and PDFs generated in the browser via jsPDF + autotable so reports render the same on every machine.',
+      'Reports persist server-side; the binary regenerates from raw scores so the design can change without a backfill. Cut **page load by 40%** and lifted engagement **25%** in the first month after rollout.',
+    ],
+    features: [
+      'Role-resolver routing — admins never see HR\'s nav, HR never sees admin actions.',
+      'Front-end PDF reports — page-break edge cases QA-tested per release.',
+      'Re-download from history without re-running the assessment.',
+      'Manual end-to-end QA pass per role on every PR.',
+    ],
+    meta: {
+      stack: ['React', 'MUI', 'REST API', 'jsPDF', 'Auth'],
+      role: 'Lead frontend',
+      timeline: '2025 — present',
+      reach: 'Internal HR teams + external clients',
+    },
+    slides: slidesFor('twindix-performance-indicator', [
+      'Login',
+      'Dashboard',
+      'Project list',
+    ]),
+    actions: [
+      { kind: 'live', href: 'https://twindix-performance-indicator.netlify.app/login', label: 'Live demo' },
+    ],
   },
   {
-    id: 'project-2',
-    slug: 'twindix-performance-indicator',
-    name: 'Twindix Performance Indicator',
-    type: 'Multi-Role Dashboard',
-    tech: ['React', 'MUI', 'Auth', 'PDF Generation', 'REST API'],
-    description:
-      "A multi-role assessment dashboard with three personas — User, HR and Admin — each landing on a different shell. Users complete assessments and download personalised PDF reports generated entirely on the front end from raw scores. HR manages enrollments, package purchases and team-level views; Admin owns pricing, packages and audit. Every report is persisted per account so it can be re-downloaded later. The live link starts at the auth screen because the dashboards are gated.",
-    images: numbered('twindix-performance-indicator', [1, 2, 3, 4, 5, 6, 7, 8, 9]),
-    liveUrl: 'https://twindix-performance-indicator.netlify.app/login',
-    repoUrl: null,
+    id: 'twindix',
+    title: 'Twindix Executive Platform',
+    category: 'Assessment platform',
+    year: 2025,
+    pill: { tone: 'accent', label: 'Live' },
+    tag:
+      'A research-backed talent assessment platform — Twindix Executives (8 leadership indicators) and Job Bar (matching candidates to 12,000+ global roles) — distilled from 1,500+ executives and 230+ business models.',
+    overview: [
+      "Marketing front door for Twindix's flagship products, with the assessment tooling living behind login. Built on Next.js + MUI; the page is the first thing every prospective HR client sees, so it earns its weight in conversion, not just visuals.",
+    ],
+    features: [
+      'Next.js marketing site tuned for SEO + first-paint speed.',
+      'Eight executive indicators, surfaced as scannable copy blocks.',
+      'Direct hand-off to the gated assessment shell.',
+      'Bilingual-ready content layout.',
+    ],
+    meta: {
+      stack: ['React', 'Next.js', 'MUI', 'REST API'],
+      role: 'Frontend',
+      timeline: '2025',
+      reach: 'Public marketing + client gateway',
+    },
+    slides: slidesFor('twindix', ['Hero', 'Indicators', 'Job Bar']),
+    actions: [
+      { kind: 'live', href: 'https://twindix.com/', label: 'Visit site' },
+    ],
   },
   {
-    id: 'project-3',
-    slug: 'twindix-benchmark',
-    name: 'Twindix Benchmark Creator',
-    type: 'HR Analytics',
-    tech: ['React', 'MUI', 'REST API', 'Charts'],
-    description:
-      "A benchmark builder used by HR teams to define ideal role profiles and compare them against the company's assessment data. It takes the raw results from Performance Indicator and turns them into team-level dashboards: trait distributions, gap analysis and side-by-side role comparisons. The output is a calibrated yardstick HR can use when interviewing or restructuring. Login-gated.",
-    images: numbered('twindix-benchmark', [1, 2, 3]),
-    liveUrl: 'https://benchmark.twindix.com/benchmark',
-    repoUrl: null,
+    id: 'twindix-benchmark',
+    title: 'Twindix Benchmark Creator',
+    category: 'HR analytics',
+    year: 2025,
+    pill: { tone: 'muted', label: 'Login-gated' },
+    tag:
+      "A benchmark builder used by HR teams to define ideal role profiles and compare them against the company's assessment data — trait distributions, gap analysis, side-by-side role comparisons.",
+    overview: [
+      'Takes raw output from Performance Indicator and turns it into team-level dashboards: a calibrated yardstick HR can use when interviewing or restructuring. The output is meant to argue with, not just look at.',
+    ],
+    features: [
+      'Role-profile editor with constrained, sane inputs.',
+      'Side-by-side comparisons against company data.',
+      'Trait distributions surfaced as charts, not tables.',
+      'Login-gated for client confidentiality.',
+    ],
+    meta: {
+      stack: ['React', 'MUI', 'REST API', 'Charts'],
+      role: 'Frontend',
+      timeline: '2025',
+      reach: 'HR teams (gated)',
+    },
+    slides: slidesFor('twindix-benchmark', ['Login', 'Shell', 'Builder']),
+    actions: [
+      { kind: 'live', href: 'https://benchmark.twindix.com/benchmark', label: 'See it live' },
+    ],
   },
   {
-    id: 'project-4',
-    slug: 'careerfinder',
-    name: 'CareerFinder',
-    type: 'Career-Fit Engine',
-    tech: ['React', 'MUI', 'REST API'],
-    description:
-      "A career-fit application built on top of the Twindix assessment engine. Individuals complete the questionnaire and the matcher scores their behavioural profile against thousands of role descriptions, surfacing the closest fits with a per-role explanation of why. The UX is intentionally lightweight — one funnel from quiz to ranked result list. Demo opens on the login screen.",
-    images: numbered('careerfinder', [1, 2, 3, 4]),
-    liveUrl: 'https://careerfinder.twindix.com/login',
-    repoUrl: null,
+    id: 'careerfinder',
+    title: 'CareerFinder',
+    category: 'Career-fit engine',
+    year: 2025,
+    pill: { tone: 'muted', label: 'Login-gated' },
+    tag:
+      "A career-fit application built on top of the Twindix assessment engine: scores a behavioural profile against thousands of role descriptions and surfaces the closest fits with a per-role explanation of why.",
+    overview: [
+      'One funnel from quiz to ranked result list. The UX is deliberately lightweight — answer the questionnaire, get a list, see why each role made the top.',
+    ],
+    features: [
+      'Single-funnel flow from quiz to ranked results.',
+      'Per-role explanations grounded in trait scores.',
+      'Job Bar integration for live job-description matches.',
+      'Demo opens on the login screen — by design.',
+    ],
+    meta: {
+      stack: ['React', 'MUI', 'REST API'],
+      role: 'Frontend',
+      timeline: '2025',
+      reach: 'Individual candidates (gated)',
+    },
+    slides: slidesFor('careerfinder', ['Login', 'Shell', 'Code entry', 'Results']),
+    actions: [
+      { kind: 'live', href: 'https://careerfinder.twindix.com/login', label: 'See it live' },
+    ],
   },
   {
-    id: 'project-5',
-    slug: 'data-nile',
-    name: 'Data Nile Research Portal',
-    type: 'Full-Stack Platform',
-    tech: ['React 18', 'MUI 6', 'Express', 'Firebase', 'Firestore'],
-    description:
-      "A full-stack research portal where the admin owns every pixel: page copy, imagery, colour palette, typography, contact-form fields and incoming submissions are all editable from a dashboard. The frontend is React 18 + MUI 6; the backend is Express 4 with Firebase 11, Firestore powering live content updates and Firebase Auth gating the admin side. Includes QR-code generation (qrcode.react) and drag-and-drop uploads (react-dropzone). Built so the research team can publish without a developer in the loop.",
-    images: numbered('data-nile', [1, 2, 3, 4, 5, 6]),
-    liveUrl: 'https://lambent-choux-e63b31.netlify.app/',
-    repoUrl: 'https://github.com/Bassel610/Data_Nile',
+    id: 'data-nile',
+    title: 'Data Nile Research Portal',
+    category: 'Full-stack platform',
+    year: 2024,
+    pill: { tone: 'accent', label: 'Live' },
+    tag:
+      'A full-stack research portal where the admin owns every pixel — copy, imagery, colour palette, typography, contact-form fields, incoming submissions — all editable from a dashboard.',
+    overview: [
+      'React 18 + MUI 6 on the frontend, Express 4 + Firebase 11 on the backend, with Firestore for live content updates and Firebase Auth gating the admin. Includes QR generation and drag-and-drop uploads.',
+      'Built so the research team can publish without a developer in the loop.',
+    ],
+    features: [
+      'Admin console for hero, about, services, and submissions.',
+      'Live Firestore content updates, no rebuild required.',
+      'QR-code generation + drag-and-drop image uploads.',
+      'Firebase Auth gating the admin surface.',
+    ],
+    meta: {
+      stack: ['React 18', 'MUI 6', 'Express', 'Firebase', 'Firestore'],
+      role: 'Full-stack',
+      timeline: '2024',
+      reach: 'Public site + admin console',
+    },
+    slides: slidesFor('data-nile', [
+      'Home',
+      'Admin login',
+      'Manage home',
+      'Manage layout',
+    ]),
+    actions: [
+      { kind: 'live', href: 'https://lambent-choux-e63b31.netlify.app/', label: 'Visit site' },
+      { kind: 'github', href: 'https://github.com/Bassel610/Data_Nile', label: 'GitHub' },
+    ],
   },
   {
-    id: 'project-6',
-    slug: 'pico',
-    name: 'PICO — Organic Produce Storefront',
-    type: 'E-commerce',
-    tech: ['React 19', 'Vite 6', 'MUI 6', 'PWA'],
-    description:
-      "A modern storefront for fresh organic produce delivery. 100+ products across 5 categories with real-time autocomplete search, faceted filtering (price, rating, category, availability), wishlist, persistent cart, full checkout and order history. Hits 90+ Lighthouse scores via code splitting, lazy loading and 5-minute API caching. Ships dark mode, WCAG 2.1 AA accessibility and PWA capabilities. Built on React 19 + Vite 6 with MUI 6.",
-    images: numbered('pico', [1, 2, 3, 4, 5]),
-    liveUrl: 'https://picco.netlify.app/',
-    repoUrl: 'https://github.com/Bassel610/PICO',
+    id: 'pico',
+    title: 'PICO — Organic Produce Storefront',
+    category: 'E-commerce',
+    year: 2024,
+    pill: { tone: 'accent', label: 'Live' },
+    tag:
+      'A modern storefront for fresh organic produce delivery. 100+ products, real-time autocomplete, faceted filters, wishlist, persistent cart, full checkout, and order history.',
+    overview: [
+      'Built on React 19 + Vite 6 with MUI 6. Hits 90+ Lighthouse scores via code splitting, lazy loading and 5-minute API caching. Ships dark mode, WCAG 2.1 AA accessibility, and PWA capabilities.',
+    ],
+    features: [
+      'Real-time autocomplete search across 100+ products.',
+      'Faceted filtering — price, rating, category, availability.',
+      'Persistent cart + wishlist + four-step checkout.',
+      'PWA capable with WCAG 2.1 AA accessibility.',
+    ],
+    meta: {
+      stack: ['React 19', 'Vite 6', 'MUI 6', 'PWA'],
+      role: 'Frontend',
+      timeline: '2024',
+      reach: 'Public storefront',
+    },
+    slides: slidesFor('pico', [
+      'Storefront',
+      'Product detail',
+      'Cart',
+      'Checkout',
+    ]),
+    actions: [
+      { kind: 'live', href: 'https://picco.netlify.app/', label: 'Visit site' },
+      { kind: 'github', href: 'https://github.com/Bassel610/PICO', label: 'GitHub' },
+    ],
   },
   {
-    id: 'project-7',
-    slug: 'linas-portfolio',
-    name: "Lina's Interior Design Portfolio",
-    type: 'Designer Portfolio',
-    tech: ['React 18', 'Vite 5', 'MUI 6', 'Swiper', 'ColorThief'],
-    description:
-      "A designer's project portfolio with rich, lazy-loaded galleries and Swiper-powered carousels. The chrome quietly recolours as you browse — ColorThief and fast-average-color extract dominant colours from each project hero so the page theme follows the work, not the other way round. Mobile-first responsive layouts, semantic SEO markup, and a contact form with validation. React 18, Vite 5, React Router 7, MUI 6.",
-    images: numbered('linas-portfolio', [1, 2, 3, 4]),
-    liveUrl: 'https://linas-portfolio.netlify.app/',
-    repoUrl: 'https://github.com/Bassel610/linas-portfolio',
+    id: 'linas-portfolio',
+    title: "Lina's Interior Design Portfolio",
+    category: 'Designer portfolio',
+    year: 2024,
+    pill: { tone: 'accent', label: 'Live' },
+    tag:
+      "A designer's portfolio with lazy-loaded galleries and Swiper carousels. The chrome quietly recolours as you browse — colours extracted from each hero so the page theme follows the work.",
+    overview: [
+      'React 18 + Vite 5 + MUI 6 + Swiper. ColorThief and fast-average-color extract dominant colours from each project hero so the chrome theme follows the work, not the other way round. Mobile-first, semantic SEO, contact form with validation.',
+    ],
+    features: [
+      'Theme-from-hero — chrome adapts to each project\'s colour world.',
+      'Lazy-loaded galleries powered by Swiper.',
+      'Mobile-first layouts, semantic SEO markup.',
+      'Contact form with client-side validation.',
+    ],
+    meta: {
+      stack: ['React 18', 'Vite 5', 'MUI 6', 'Swiper', 'ColorThief'],
+      role: 'Frontend',
+      timeline: '2024',
+      reach: 'Designer portfolio site',
+    },
+    slides: slidesFor('linas-portfolio', ['Home', 'My Work', 'About']),
+    actions: [
+      { kind: 'live', href: 'https://linas-portfolio.netlify.app/', label: 'Visit site' },
+      { kind: 'github', href: 'https://github.com/Bassel610/linas-portfolio', label: 'GitHub' },
+    ],
   },
   {
-    id: 'project-8',
-    slug: 'dalilk',
-    name: 'Dalilk — Audio Capture & PDF Reports',
-    type: 'Full-Stack Tool',
-    tech: ['React 18', 'Vite', 'Express', 'Firebase 12', 'jsPDF'],
-    description:
-      "A full-stack tool for capturing audio in the browser and turning sessions into structured PDF reports. The React/Vite frontend records via react-mic and audio-react-recorder; the Express backend persists sessions to Firestore through Firebase 12, and jsPDF + jspdf-autotable produce tabular exports clean enough to send to a client. Auth-gated with Firebase Auth and CORS-aware for the API split between front and back.",
-    images: numbered('dalilk', [1, 2, 3]),
-    liveUrl: 'https://mellow-pixie-196274.netlify.app/',
-    repoUrl: 'https://github.com/Bassel610/Dalilk',
+    id: 'dalilk',
+    title: 'Dalilk — Audio Capture & PDF Reports',
+    category: 'Full-stack tool',
+    year: 2024,
+    pill: { tone: 'accent', label: 'Live' },
+    tag:
+      'A full-stack tool for capturing audio in the browser and turning sessions into structured PDF reports — recorded with react-mic, persisted via Firebase, exported via jsPDF.',
+    overview: [
+      "React + Vite frontend records via react-mic and audio-react-recorder. Express backend persists sessions to Firestore through Firebase 12. jsPDF + jspdf-autotable produce tabular exports clean enough to send to a client. Auth-gated with Firebase Auth, CORS-aware for the API split.",
+    ],
+    features: [
+      'Browser audio capture via react-mic / audio-react-recorder.',
+      'Express + Firestore session persistence.',
+      'jsPDF + autotable export pipeline.',
+      'Firebase Auth-gated, CORS-aware API split.',
+    ],
+    meta: {
+      stack: ['React 18', 'Vite', 'Express', 'Firebase 12', 'jsPDF'],
+      role: 'Full-stack',
+      timeline: '2024',
+      reach: 'Internal tool',
+    },
+    slides: slidesFor('dalilk', ['Home', 'Detail']),
+    actions: [
+      { kind: 'live', href: 'https://mellow-pixie-196274.netlify.app/', label: 'Visit site' },
+      { kind: 'github', href: 'https://github.com/Bassel610/Dalilk', label: 'GitHub' },
+    ],
   },
 ];
 
-export const PROJECT_NAV = PROJECTS.map((p) => ({
-  id: p.id,
-  title: p.name,
-  type: p.type,
-  tech: p.tech.slice(0, 3).join(' • '),
-}));
+export const VISIBLE_BY_DEFAULT = 2;
