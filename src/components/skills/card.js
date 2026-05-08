@@ -13,8 +13,7 @@ export default function SkillCard({ index, title, blurb, chips }) {
         p: '22px',
         borderRadius: 'var(--radius)',
         border: '1px solid var(--line)',
-        background:
-          'linear-gradient(180deg, var(--bg-1) 0%, color-mix(in oklab, var(--bg-1) 92%, var(--accent-soft)) 100%)',
+        background: 'var(--bg-1)',
         transition: 'border-color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth)',
         '&:hover': { borderColor: 'var(--line-strong)', transform: 'translateY(-2px)' },
       }}

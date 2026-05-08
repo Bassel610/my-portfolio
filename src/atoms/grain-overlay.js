@@ -13,8 +13,8 @@ export default function GrainOverlay() {
         pointerEvents: 'none',
         backgroundImage: `url("${GRAIN_SVG}")`,
         backgroundRepeat: 'repeat',
-        opacity: 0.06,
-        mixBlendMode: 'overlay',
+        opacity: 'var(--grain-op)',
+        mixBlendMode: 'var(--grain-mix)',
         zIndex: 1,
       }}
     />

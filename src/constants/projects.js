@@ -309,14 +309,14 @@ export const PROJECTS = [
     },
     slides: slidesFor(
       'dalilk',
-      [3, 5, 4, 6, 2, 1],
+      [1, 3, 5, 4, 6, 2],
       [
+        'Public home',
         'Admin shell',
         'Add shop',
         'Edit shop',
         'Manage users',
         'Admin login',
-        'Public home',
       ]
     ),
     actions: [
