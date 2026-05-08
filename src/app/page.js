@@ -1,12 +1,40 @@
 'use client';
-import { ErrorBoundary, GlobalErrorHandler, OfflineBanner } from '@/components/error';
+import {
+  ErrorBoundary,
+  GlobalErrorHandler,
+  OfflineBanner,
+} from '@/components/error';
+import { Nav, Footer } from '@/components/shared';
+import { GrainOverlay } from '@/atoms';
+import {
+  Hero,
+  About,
+  Skills,
+  Work,
+  Approach,
+  Journey,
+  Services,
+  Contact,
+} from '@/views';
 
 export default function Home() {
   return (
     <ErrorBoundary>
       <OfflineBanner />
       <GlobalErrorHandler />
-      <main style={{ minHeight: '100vh' }} />
+      <GrainOverlay />
+      <Nav />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Work />
+        <Approach />
+        <Journey />
+        <Services />
+        <Contact />
+      </main>
+      <Footer />
     </ErrorBoundary>
   );
 }
