@@ -18,7 +18,7 @@ export default function NavLink({ href, children, onClick }) {
         transition: 'color 0.2s var(--ease-smooth), background 0.2s var(--ease-smooth)',
         '&:hover': {
           color: 'var(--fg)',
-          background: 'var(--bg-1)',
+          background: 'rgba(20, 15, 5, 0.04)',
         },
       }}
     >

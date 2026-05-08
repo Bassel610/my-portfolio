@@ -3,6 +3,14 @@ import { Box } from '@mui/material';
 
 const DOTS = ['#ff5f57', '#febc2e', '#28c840'];
 
+// Gallery chrome stays dark in both themes — like a screen-bezel — so
+// the screenshots inside read consistently.
+const FRAME_BG = '#0c0c0e';
+const FRAME_BAR = '#16161a';
+const FRAME_LINE = 'rgba(255, 255, 255, 0.08)';
+const FRAME_URL_BG = '#0c0c0e';
+const FRAME_URL_FG = 'rgba(255, 255, 255, 0.45)';
+
 export default function BrowserFrame({ url = 'preview', children }) {
   return (
     <Box
@@ -11,8 +19,8 @@ export default function BrowserFrame({ url = 'preview', children }) {
         width: '100%',
         height: '100%',
         borderRadius: 'var(--radius-lg)',
-        border: '1px solid var(--line)',
-        background: 'var(--bg-1)',
+        border: `1px solid ${FRAME_LINE}`,
+        background: FRAME_BG,
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
@@ -26,8 +34,8 @@ export default function BrowserFrame({ url = 'preview', children }) {
           display: 'flex',
           alignItems: 'center',
           gap: 1,
-          borderBottom: '1px solid var(--line)',
-          background: 'var(--bg-2)',
+          borderBottom: `1px solid ${FRAME_LINE}`,
+          background: FRAME_BAR,
         }}
       >
         <Box sx={{ display: 'flex', gap: 0.625 }}>
@@ -46,13 +54,13 @@ export default function BrowserFrame({ url = 'preview', children }) {
             height: 20,
             px: 1,
             borderRadius: '6px',
-            background: 'var(--bg)',
-            color: 'var(--fg-mute)',
+            background: FRAME_URL_BG,
+            color: FRAME_URL_FG,
             fontFamily: 'var(--font-mono)',
             fontSize: '0.7rem',
             display: 'flex',
             alignItems: 'center',
-            border: '1px solid var(--line)',
+            border: `1px solid ${FRAME_LINE}`,
           }}
         >
           {url}

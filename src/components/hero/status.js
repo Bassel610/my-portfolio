@@ -17,14 +17,14 @@ export default function Status() {
       <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}>
         <Box
           sx={{
-            width: 7,
-            height: 7,
+            width: 8,
+            height: 8,
             borderRadius: '50%',
-            background: 'var(--accent)',
-            boxShadow: '0 0 0 0 var(--accent-line)',
+            background: 'oklch(0.65 0.18 145)',
+            boxShadow: '0 0 0 0 var(--accent-soft)',
             animation: 'heroDot 1.8s ease-out infinite',
             '@keyframes heroDot': {
-              '0%': { boxShadow: '0 0 0 0 var(--accent-line)' },
+              '0%': { boxShadow: '0 0 0 0 var(--accent-soft)' },
               '70%': { boxShadow: '0 0 0 8px transparent' },
               '100%': { boxShadow: '0 0 0 0 transparent' },
             },

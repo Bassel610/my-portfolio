@@ -4,18 +4,20 @@ import { ArrowUpRight } from 'lucide-react';
 
 const VARIANT = {
   solid: {
-    bg: 'var(--accent)',
-    color: 'var(--accent-ink)',
-    border: '1px solid var(--accent)',
-    hoverBg: 'oklch(0.88 0.13 80)',
-    hoverBorder: 'oklch(0.88 0.13 80)',
+    bg: 'var(--fg)',
+    color: 'var(--bg)',
+    border: '1px solid var(--fg)',
+    hoverBg: 'var(--accent)',
+    hoverBorder: 'var(--accent)',
+    hoverColor: 'var(--accent-ink)',
   },
   outline: {
     bg: 'transparent',
     color: 'var(--fg)',
     border: '1px solid var(--line-strong)',
-    hoverBg: 'var(--bg-1)',
-    hoverBorder: 'var(--accent-line)',
+    hoverBg: 'transparent',
+    hoverBorder: 'var(--accent)',
+    hoverColor: 'var(--accent)',
   },
   ghost: {
     bg: 'transparent',
@@ -23,6 +25,7 @@ const VARIANT = {
     border: '1px solid transparent',
     hoverBg: 'var(--bg-1)',
     hoverBorder: 'transparent',
+    hoverColor: 'var(--fg)',
   },
 };
 
@@ -66,18 +69,18 @@ export default function Button({
         fontSize: '0.92rem',
         letterSpacing: '-0.005em',
         cursor: 'pointer',
-        transition: 'background 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth)',
+        transition:
+          'background 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth)',
         textDecoration: 'none',
         whiteSpace: 'nowrap',
         '&:hover': {
           background: v.hoverBg,
           borderColor: v.hoverBorder,
+          color: v.hoverColor,
           transform: 'translateY(-1px)',
           '& svg.btn-arrow': { transform: 'translate(2px, -2px)' },
         },
-        '& svg.btn-arrow': {
-          transition: 'transform 0.2s var(--ease-smooth)',
-        },
+        '& svg.btn-arrow': { transition: 'transform 0.2s var(--ease-smooth)' },
       }}
       {...rest}
     >

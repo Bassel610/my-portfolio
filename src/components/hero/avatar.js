@@ -8,8 +8,8 @@ export default function Avatar() {
     <Box
       sx={{
         position: 'relative',
-        width: { xs: 96, md: 132 },
-        height: { xs: 96, md: 132 },
+        width: { xs: 140, md: 220 },
+        height: { xs: 140, md: 220 },
         borderRadius: '50%',
         overflow: 'hidden',
         border: '1px solid var(--line-strong)',

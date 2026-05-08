@@ -9,10 +9,10 @@ export default function PrincipleCell({ index, title, body, icon }) {
     <Box
       sx={{
         position: 'relative',
-        background: 'var(--bg-1)',
+        background: 'var(--bg)',
         p: { xs: 3, md: '36px 32px' },
         transition: 'background 0.2s var(--ease-smooth)',
-        '&:hover': { background: 'var(--bg-2)' },
+        '&:hover': { background: 'var(--bg-1)' },
         '&:hover .approach-icon': {
           background: 'var(--accent-soft)',
           borderColor: 'var(--accent-line)',
@@ -30,9 +30,9 @@ export default function PrincipleCell({ index, title, body, icon }) {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: '8px',
-            border: '1px solid var(--line)',
+            border: '1px solid var(--line-strong)',
             background: 'transparent',
-            color: 'var(--fg-dim)',
+            color: 'var(--accent)',
             transition: 'all 0.2s var(--ease-smooth)',
           }}
         >

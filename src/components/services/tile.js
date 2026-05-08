@@ -12,11 +12,11 @@ export default function ServiceTile({ index, title, body, deliverables }) {
         p: { xs: 3, md: '36px 32px' },
         border: '1px solid var(--line)',
         borderRadius: 'var(--radius-lg)',
-        background: 'var(--bg-1)',
+        background: 'var(--bg)',
         height: '100%',
         transition: 'border-color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth)',
         '&:hover': {
-          borderColor: 'var(--accent-line)',
+          borderColor: 'var(--line-strong)',
           transform: 'translateY(-2px)',
         },
       }}

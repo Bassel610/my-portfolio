@@ -22,7 +22,7 @@ export default function SectionHead({ number, eyebrow, title, right }) {
             mb: { xs: 2, md: 3 },
           }}
         >
-          {number != null && <MonoNumber value={number} />}
+          {number != null && <MonoNumber value={number} tone="accent" />}
           <Typography
             component="span"
             sx={{
@@ -30,7 +30,7 @@ export default function SectionHead({ number, eyebrow, title, right }) {
               fontSize: '0.78rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'var(--fg-mute)',
+              color: 'var(--fg-dim)',
             }}
           >
             — {eyebrow}

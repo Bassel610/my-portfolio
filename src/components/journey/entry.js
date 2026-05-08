@@ -17,7 +17,7 @@ export default function Entry({ year, role, location, body, chips, current }) {
           width: 9,
           height: 9,
           borderRadius: '50%',
-          background: current ? 'var(--accent)' : 'var(--bg)',
+          background: 'var(--bg)',
           border: '2px solid',
           borderColor: current ? 'var(--accent)' : 'var(--line-strong)',
           boxShadow: current ? '0 0 0 4px var(--accent-soft)' : 'none',

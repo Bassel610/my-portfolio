@@ -12,7 +12,7 @@ export default function Chip({ children }) {
         py: 0.4,
         borderRadius: '6px',
         border: '1px solid var(--line)',
-        background: 'var(--bg-1)',
+        background: 'rgba(20, 15, 5, 0.04)',
         color: 'var(--fg-dim)',
         fontFamily: 'var(--font-mono)',
         fontSize: '0.72rem',

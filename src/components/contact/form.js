@@ -14,9 +14,14 @@ const FIELD_SX = {
   padding: '12px 14px',
   fontFamily: 'inherit',
   fontSize: '0.92rem',
-  transition: 'border-color 0.2s var(--ease-smooth)',
+  transition:
+    'border-color 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth)',
   outline: 'none',
-  '&:focus': { borderColor: 'var(--accent-line)' },
+  '&::placeholder': { color: 'var(--fg-mute)' },
+  '&:focus': {
+    borderColor: 'var(--accent)',
+    boxShadow: '0 0 0 3px var(--accent-soft)',
+  },
 };
 
 export default function Form() {
@@ -64,7 +69,7 @@ export default function Form() {
               fontSize: '0.7rem',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: 'var(--fg-mute)',
+              color: 'var(--fg-dim)',
             }}
           >
             {f.label}
