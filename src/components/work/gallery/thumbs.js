@@ -23,6 +23,7 @@ export default function Thumbs({ slides, activeIndex, onSelect }) {
             role="tab"
             aria-selected={active}
             onClick={() => onSelect(i)}
+            suppressHydrationWarning
             sx={{
               display: 'inline-flex',
               alignItems: 'center',

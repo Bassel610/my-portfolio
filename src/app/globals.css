@@ -114,14 +114,14 @@ img, svg { display: block; max-width: 100%; }
 /* ─── boot loader: editorial monogram + drawn-in gold rule ───── */
 #boot-loader {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 0 24px;
+  margin: 0;
+  display: grid;
+  place-items: center;
   background: var(--bg);
   color: var(--fg);
   text-align: center;
@@ -129,6 +129,16 @@ img, svg { display: block; max-width: 100%; }
     opacity 0.55s var(--ease-smooth),
     visibility 0.55s var(--ease-smooth),
     transform 0.55s var(--ease-smooth);
+}
+
+.boot-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
 }
 
 #boot-loader::before {
@@ -168,11 +178,21 @@ img, svg { display: block; max-width: 100%; }
   animation: bootFadeUp 0.55s var(--ease-smooth) 0.05s forwards;
 }
 
-.boot-rule {
+.boot-rule-wrap {
   position: relative;
   width: clamp(150px, 22vw, 220px);
+  height: 6px;
+  overflow: hidden;
+}
+.boot-rule {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 100%;
   height: 2px;
   display: block;
+  transform: translateY(-50%);
   overflow: visible;
 }
 .boot-rule path {
@@ -182,7 +202,35 @@ img, svg { display: block; max-width: 100%; }
   stroke-linecap: round;
   stroke-dasharray: 220;
   stroke-dashoffset: 220;
+  opacity: 0.42;
   animation: bootRule 0.75s var(--ease-smooth) 0.35s forwards;
+}
+.boot-rule-cursor {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent) 50%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 0 6px var(--accent-soft));
+  transform: translate(-100%, -50%);
+  opacity: 0;
+  animation:
+    bootCursorAppear 0.4s var(--ease-smooth) 1.05s forwards,
+    bootCursor 1.6s var(--ease-smooth) 1.1s infinite;
+}
+
+@keyframes bootCursorAppear {
+  to { opacity: 1; }
+}
+@keyframes bootCursor {
+  0%   { transform: translate(-100%, -50%); }
+  100% { transform: translate(200%, -50%); }
 }
 
 .boot-cap {
