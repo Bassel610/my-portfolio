@@ -1,2 +1,8 @@
 export { default as Nav } from './nav';
 export { default as Footer } from './footer';
+export { default as ThemeRegistry } from './theme-registry';
+export { default as ThemeToggle } from './theme-toggle';
+export { default as SectionHead } from './section-head';
+export { default as Button } from './button';
+export { default as MetaCard } from './meta-card';
+export { default as HeroBackdrop } from './hero-backdrop';

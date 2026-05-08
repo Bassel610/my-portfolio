@@ -1,2 +1,9 @@
 export { default as LoadingSpinner } from './loading-spinner';
 export { default as ImageWithFallback } from './image-with-fallback';
+export { default as Reveal } from './reveal';
+export { default as Pill } from './pill';
+export { default as Chip } from './chip';
+export { default as MonoNumber } from './mono-number';
+export { default as BrowserFrame } from './browser-frame';
+export { default as GrainOverlay } from './grain-overlay';
+export { default as GoldUnderline } from './gold-underline';

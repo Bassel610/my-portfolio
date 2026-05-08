@@ -1,42 +1,106 @@
 'use client';
-import { Avatar, Box, Typography } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Box, Typography } from '@mui/material';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { SITE } from '@/constants/site';
+import { CONTACT } from '@/constants/contact';
+
+const ICON = { github: Github, linkedin: Linkedin, email: Mail };
 
 export default function Footer() {
   return (
     <Box
-      component={motion.footer}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
+      component="footer"
       sx={{
-        position: 'fixed',
-        bottom: 20,
-        right: 20,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 2,
-        zIndex: 1000,
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '50px',
-        padding: '10px 20px',
-        border: '1px solid rgba(255, 255, 255, 0.2)',
+        mt: { xs: 6, md: 10 },
+        pt: 7,
+        pb: 5,
+        borderTop: '1px solid var(--line)',
       }}
     >
-      <Avatar
-        src={SITE.footerAvatarSrc}
-        alt={SITE.name}
+      <Box
         sx={{
-          width: 40,
-          height: 40,
-          border: '2px solid rgba(255, 255, 255, 0.3)',
+          maxWidth: 1280,
+          mx: 'auto',
+          px: 'clamp(24px, 5vw, 56px)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 3,
         }}
-      />
-      <Typography variant="body2" sx={{ color: 'white', fontWeight: 500 }}>
-        {SITE.copyright}
-      </Typography>
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: 1.5,
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1rem',
+              fontWeight: 500,
+              color: 'var(--fg)',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            {SITE.monogram}
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: '0.88rem',
+              color: 'var(--fg-dim)',
+            }}
+          >
+            {SITE.tagline}
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 2.5,
+            flexWrap: 'wrap',
+          }}
+        >
+          {CONTACT.channels.map((c) => {
+            const Icon = ICON[c.kind] ?? Mail;
+            return (
+              <Box
+                key={c.kind}
+                component="a"
+                href={c.href}
+                target={c.kind === 'email' ? undefined : '_blank'}
+                rel={c.kind === 'email' ? undefined : 'noopener noreferrer'}
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 0.85,
+                  fontSize: '0.86rem',
+                  color: 'var(--fg-dim)',
+                  transition: 'color 0.2s var(--ease-smooth)',
+                  '&:hover': { color: 'var(--accent)' },
+                }}
+              >
+                <Icon size={15} strokeWidth={1.6} />
+                {c.label}
+              </Box>
+            );
+          })}
+        </Box>
+
+        <Typography
+          sx={{
+            fontSize: '0.78rem',
+            color: 'var(--fg-mute)',
+            fontFamily: 'var(--font-mono)',
+            letterSpacing: '0.02em',
+          }}
+        >
+          {SITE.copyright}
+        </Typography>
+      </Box>
     </Box>
   );
 }
