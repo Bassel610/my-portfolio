@@ -1,27 +1,22 @@
-import { VantaBackground } from "@/components/shared";
-
 export const metadata = {
-  title: 'Basel Sherif - Full Stack Developer Portfolio',
-  description: 'Professional portfolio showcasing modern web applications, including TwinDeix Assessment Platform, e-commerce solutions, and interactive designs. Expert in React, Next.js, and full-stack development.',
-  keywords: 'Basel Sherif, Full Stack Developer, React Developer, Next.js, Portfolio, Web Development, TwinDeix, JavaScript, Frontend, Backend',
+  title: 'Basel Sherif — Frontend Engineer',
+  description:
+    'Frontend engineer based in Cairo. Production React / Next.js — design systems, dashboards, marketing sites, real-time UIs.',
   authors: [{ name: 'Basel Sherif' }],
   creator: 'Basel Sherif',
   publisher: 'Basel Sherif',
   openGraph: {
-    title: 'Basel Sherif - Full Stack Developer Portfolio',
-    description: 'Professional portfolio showcasing modern web applications and development expertise',
+    title: 'Basel Sherif — Frontend Engineer',
+    description: 'Production React / Next.js. Design systems, dashboards, real-time UIs.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Basel Sherif - Full Stack Developer Portfolio',
-    description: 'Professional portfolio showcasing modern web applications and development expertise',
+    title: 'Basel Sherif — Frontend Engineer',
+    description: 'Production React / Next.js. Design systems, dashboards, real-time UIs.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport = {
@@ -34,19 +29,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="theme-color" content="#667eea" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="format-detection" content="telephone=no" />
-      </head>
-      <body style={{ margin: 0, backgroundColor: "#23153c" }}>
-        <VantaBackground />
-        <main style={{ position: "relative", zIndex: 1 }}>
-          {children}
-        </main>
-      </body>
+      <body style={{ margin: 0 }}>{children}</body>
     </html>
   );
 }
