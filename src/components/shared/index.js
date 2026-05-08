@@ -6,3 +6,4 @@ export { default as SectionHead } from './section-head';
 export { default as Button } from './button';
 export { default as MetaCard } from './meta-card';
 export { default as HeroBackdrop } from './hero-backdrop';
+export { default as Section } from './section';
