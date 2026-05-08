@@ -1,15 +1,16 @@
 'use client';
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { useMemo } from 'react';
 
+// MUI palette is intentionally minimal — body/text colors come from
+// the CSS variables in globals.css so the theme toggle (data-theme)
+// drives every surface. CssBaseline is dropped because it would force
+// body bg to MUI's palette and override our --bg variable.
 const theme = createTheme({
   shape: { borderRadius: 12 },
   palette: {
     mode: 'dark',
-    background: { default: '#2a2825', paper: '#312e2b' },
-    text: { primary: '#f5f3ee', secondary: '#b6afa3' },
-    divider: '#45413c',
-    primary: { main: '#e8b755', contrastText: '#2c2823' },
+    primary: { main: '#e8b755', contrastText: '#1a1714' },
   },
   typography: {
     fontFamily: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif',
@@ -23,10 +24,5 @@ const theme = createTheme({
 
 export default function ThemeRegistry({ children }) {
   const value = useMemo(() => theme, []);
-  return (
-    <ThemeProvider theme={value}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={value}>{children}</ThemeProvider>;
 }
