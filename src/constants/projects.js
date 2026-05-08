@@ -285,28 +285,40 @@ export const PROJECTS = [
   },
   {
     id: 'dalilk',
-    title: 'Dalilk — Audio Capture & PDF Reports',
-    category: 'Full-stack tool',
+    title: 'دليلك — Dalilk Places Guide',
+    category: 'Full-stack directory',
     year: 2024,
     pill: { tone: 'accent', label: 'Live' },
     tag:
-      'A full-stack tool for capturing audio in the browser and turning sessions into structured PDF reports — recorded with react-mic, persisted via Firebase, exported via jsPDF.',
+      'A bilingual local-places guide for Egypt — schools, clinics, mosques, restaurants — with an admin console for adding shops, editing entries, and managing users.',
     overview: [
-      'React + Vite frontend records via react-mic and audio-react-recorder. Express backend persists sessions to Firestore through Firebase 12. jsPDF + jspdf-autotable produce tabular exports clean enough to send to a client. Auth-gated with Firebase Auth, CORS-aware for the API split.',
+      'Public-facing Arabic-first directory site with an admin console behind login. Admins add shops with name, rating, categories, geographic location (governorate → district → neighbourhood), and detailed addresses; the site surfaces them on the public side with search and category filters.',
+      "Built with React + Vite on the frontend, Express + Firebase on the backend; auth-gated admin and CORS-aware split between web and API.",
     ],
     features: [
-      'Browser audio capture via react-mic / audio-react-recorder.',
-      'Express + Firestore session persistence.',
-      'jsPDF + autotable export pipeline.',
-      'Firebase Auth-gated, CORS-aware API split.',
+      'Arabic-first RTL UI with English fallback labels.',
+      'Admin console: add / edit shop, manage users, role-aware navigation.',
+      'Geographic hierarchy — governorate, district, neighbourhood.',
+      'Login + Google sign-in via Firebase Auth.',
     ],
     meta: {
-      stack: ['React 18', 'Vite', 'Express', 'Firebase 12', 'jsPDF'],
+      stack: ['React 18', 'Vite', 'Express', 'Firebase 12', 'Material UI'],
       role: 'Full-stack',
       timeline: '2024',
-      reach: 'Internal tool',
+      reach: 'Public guide + admin console',
     },
-    slides: slidesFor('dalilk', [1, 2], ['Home', 'Detail']),
+    slides: slidesFor(
+      'dalilk',
+      [3, 5, 4, 6, 2, 1],
+      [
+        'Admin shell',
+        'Add shop',
+        'Edit shop',
+        'Manage users',
+        'Admin login',
+        'Public home',
+      ]
+    ),
     actions: [
       {
         kind: 'live',

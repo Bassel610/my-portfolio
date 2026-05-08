@@ -27,22 +27,22 @@
 }
 
 [data-theme='light'] {
-  --bg:          oklch(0.965 0.012 85);
-  --bg-1:        oklch(0.945 0.014 85);
-  --bg-2:        oklch(0.925 0.016 85);
-  --plate:       oklch(0.94 0.014 85);
+  --bg:          oklch(0.965 0.010 86.64);
+  --bg-1:        oklch(0.95  0.012 86.64);
+  --bg-2:        oklch(0.93  0.014 86.64);
+  --plate:       oklch(0.94  0.010 86.64);
 
-  --fg:          oklch(0.22 0.012 70);
-  --fg-dim:      oklch(0.45 0.012 70);
-  --fg-mute:     oklch(0.62 0.01 70);
+  --fg:          oklch(0.28  0.018 86.64);
+  --fg-dim:      oklch(0.46  0.014 86.64);
+  --fg-mute:     oklch(0.62  0.010 86.64);
 
-  --line:        oklch(0.86 0.012 80);
-  --line-strong: oklch(0.78 0.014 80);
+  --line:        oklch(0.86  0.012 86.64);
+  --line-strong: oklch(0.78  0.014 86.64);
 
   --accent:      oklch(0.62 0.13 60);
   --accent-soft: oklch(0.62 0.13 60 / 0.10);
   --accent-line: oklch(0.62 0.13 60 / 0.35);
-  --accent-ink:  oklch(0.965 0.012 85);
+  --accent-ink:  oklch(0.965 0.010 86.64);
 
   color-scheme: light;
 }
