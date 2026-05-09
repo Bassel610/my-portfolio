@@ -54,6 +54,7 @@ export default function Inbox() {
             component="button"
             type="button"
             onClick={lock}
+            suppressHydrationWarning
             sx={{
               display: 'inline-flex',
               alignItems: 'center',

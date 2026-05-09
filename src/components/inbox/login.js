@@ -84,6 +84,7 @@ export default function InboxLogin({ onUnlock }) {
           }}
           autoFocus
           placeholder="Passcode"
+          suppressHydrationWarning
           sx={{
             width: '100%',
             background: 'var(--bg)',

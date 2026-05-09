@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 
-const STORAGE_KEY = 'portfolio-theme';
+const STORAGE_KEY = 'portfolio-theme-v2';
 
 function readInitial() {
   if (typeof window === 'undefined') return 'light';

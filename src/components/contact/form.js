@@ -4,16 +4,22 @@ import { Box } from '@mui/material';
 import { Button } from '@/components/shared';
 import { CONTACT } from '@/constants/contact';
 import { appendMessage } from '@/lib/inbox';
+import { sendContactEmail } from '@/lib/email';
 
 const FIELD_SX = {
+  display: 'block',
   width: '100%',
+  margin: 0,
+  appearance: 'none',
+  WebkitAppearance: 'none',
   background: 'var(--bg-1)',
   color: 'var(--fg)',
   border: '1px solid var(--line)',
   borderRadius: 'var(--radius)',
   padding: '12px 14px',
   fontFamily: 'inherit',
-  fontSize: '0.92rem',
+  fontSize: '16px',
+  lineHeight: 1.4,
   transition:
     'border-color 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth)',
   outline: 'none',
@@ -26,11 +32,16 @@ const FIELD_SX = {
 
 export default function Form() {
   const [submitted, setSubmitted] = useState(false);
-  const onSubmit = (e) => {
+  const [sending, setSending] = useState(false);
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    setSending(true);
     appendMessage(data);
-    e.currentTarget.reset();
+    await sendContactEmail(data);
+    form.reset();
+    setSending(false);
     setSubmitted(true);
   };
 
@@ -57,10 +68,10 @@ export default function Form() {
     <Box
       component="form"
       onSubmit={onSubmit}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}
     >
       {CONTACT.form.fields.map((f) => (
-        <Box key={f.name} sx={{ display: 'flex', flexDirection: 'column', gap: 0.65 }}>
+        <Box key={f.name} sx={{ display: 'flex', flexDirection: 'column', gap: 0.75 }}>
           <Box
             component="label"
             htmlFor={f.name}
@@ -86,6 +97,7 @@ export default function Form() {
               name={f.name}
               required={f.required}
               rows={5}
+              suppressHydrationWarning
               sx={{ ...FIELD_SX, resize: 'vertical', minHeight: 120 }}
             />
           ) : (
@@ -95,14 +107,15 @@ export default function Form() {
               name={f.name}
               type={f.type}
               required={f.required}
+              suppressHydrationWarning
               sx={FIELD_SX}
             />
           )}
         </Box>
       ))}
-      <Box sx={{ mt: 0.5 }}>
-        <Button variant="solid" type="submit">
-          {CONTACT.form.submitLabel}
+      <Box sx={{ mt: 1, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
+        <Button variant="solid" type="submit" arrow={!sending}>
+          {sending ? 'Sending…' : CONTACT.form.submitLabel}
         </Button>
       </Box>
     </Box>

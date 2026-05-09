@@ -30,6 +30,7 @@ function CopyButton({ value }) {
       type="button"
       onClick={onClick}
       aria-label={copied ? 'Copied' : 'Copy email'}
+      suppressHydrationWarning
       sx={{
         width: 28,
         height: 28,
@@ -51,7 +52,7 @@ function CopyButton({ value }) {
 
 export default function Channels() {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.25 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.25, width: '100%' }}>
       {CONTACT.channels.map((c) => {
         const Icon = ICON[c.kind] ?? Mail;
         const isExternal = c.kind !== 'email';
@@ -61,6 +62,7 @@ export default function Channels() {
             sx={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'flex-start' },
               gap: 1.25,
               p: 1.5,
               border: '1px solid var(--line)',
@@ -89,7 +91,7 @@ export default function Channels() {
               href={c.href}
               target={isExternal ? '_blank' : undefined}
               rel={isExternal ? 'noopener noreferrer' : undefined}
-              sx={{ flex: 1, minWidth: 0, color: 'var(--fg)', fontSize: '0.92rem' }}
+              sx={{ minWidth: 0, color: 'var(--fg)', fontSize: '0.92rem' }}
             >
               <Typography
                 sx={{

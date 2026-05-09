@@ -15,6 +15,7 @@ export default function MobileMenu({ links }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close menu' : 'Open menu'}
+        suppressHydrationWarning
         sx={{
           width: 36,
           height: 36,

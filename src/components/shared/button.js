@@ -54,6 +54,7 @@ export default function Button({
       type={!isLink ? type ?? 'button' : undefined}
       target={isLink && /^https?:/.test(href) ? '_blank' : undefined}
       rel={isLink && /^https?:/.test(href) ? 'noopener noreferrer' : undefined}
+      suppressHydrationWarning
       sx={{
         display: 'inline-flex',
         alignItems: 'center',

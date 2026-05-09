@@ -22,12 +22,12 @@ export const CONTACT = {
     },
     {
       kind: 'linkedin',
-      label: 'linkedin.com/in/basel-sherif-68330a217',
+      label: 'linkedin / basel-sherif',
       href: 'https://www.linkedin.com/in/basel-sherif-68330a217',
     },
     {
       kind: 'github',
-      label: 'github.com/Bassel610',
+      label: 'github / Bassel610',
       href: 'https://github.com/Bassel610',
     },
   ],

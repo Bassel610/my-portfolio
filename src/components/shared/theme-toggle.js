@@ -14,6 +14,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      suppressHydrationWarning
       sx={{
         width: 36,
         height: 36,

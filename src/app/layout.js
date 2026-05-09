@@ -1,6 +1,7 @@
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import ThemeRegistry from '@/components/shared/theme-registry';
 import BootLoaderHider from '@/components/shared/boot-loader';
+import VisitorTracker from '@/components/shared/visitor-tracker';
 import './globals.css';
 
 const display = Space_Grotesk({
@@ -51,12 +52,13 @@ export const viewport = {
   userScalable: true,
 };
 
-const themeBootScript = `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','light');}}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
+const themeBootScript = `(function(){try{var t=localStorage.getItem('portfolio-theme-v2');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','light');}}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      data-theme="light"
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
@@ -83,6 +85,7 @@ export default function RootLayout({ children }) {
         </div>
         <ThemeRegistry>
           <BootLoaderHider />
+          <VisitorTracker />
           {children}
         </ThemeRegistry>
       </body>

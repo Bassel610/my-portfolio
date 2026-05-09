@@ -58,6 +58,7 @@ export default function Message({ message, onDelete }) {
           type="button"
           onClick={() => onDelete(message.id)}
           aria-label="Delete message"
+          suppressHydrationWarning
           sx={{
             width: 30,
             height: 30,

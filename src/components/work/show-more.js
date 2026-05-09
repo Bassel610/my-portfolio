@@ -41,7 +41,7 @@ export default function ShowMore({ onShowMore, onShowLess, canShowMore, canShowL
       }}
     >
       {canShowMore && (
-        <Box component="button" type="button" onClick={onShowMore} sx={PILL_SX}>
+        <Box component="button" type="button" onClick={onShowMore} suppressHydrationWarning sx={PILL_SX}>
           <Box component="span" sx={COUNT_SX}>
             + {String(nextStep).padStart(2, '0')}
           </Box>
@@ -54,6 +54,7 @@ export default function ShowMore({ onShowMore, onShowLess, canShowMore, canShowL
           component="button"
           type="button"
           onClick={onShowLess}
+          suppressHydrationWarning
           sx={{ ...PILL_SX, color: 'var(--fg-dim)' }}
         >
           <Box component="span" sx={{ ...COUNT_SX, color: 'var(--fg-mute)' }}>

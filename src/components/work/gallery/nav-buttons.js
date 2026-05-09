@@ -17,6 +17,7 @@ export default function NavButton({ side, onClick }) {
       onClick={onClick}
       aria-label={cfg.label}
       className="gallery-nav"
+      suppressHydrationWarning
       sx={{
         position: 'absolute',
         top: '50%',
